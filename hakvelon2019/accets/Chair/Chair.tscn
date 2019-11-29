@@ -4,7 +4,7 @@
 [ext_resource path="res://accets/Chair/Leather.material" type="Material" id=2]
 [ext_resource path="res://accets/Chair/Metall.material" type="Material" id=3]
 
-[node name="Chair" index="0" instance=ExtResource( 1 )]
+[node name="Chair" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.291023, 0 )
 
 [node name="Back Rest" parent="." index="0"]
