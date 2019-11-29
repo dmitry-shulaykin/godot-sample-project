@@ -15,11 +15,15 @@ func _ready():
 func _on_connect_btn_pressed():
 	get_node("connect_pnl").hide()
 	gamestate.join_game()
+	gamestate.begin_game_server()
 	pass # Replace with function body.
 
 
 func _on_host_btn_pressed():
 	get_node("connect_pnl").hide()
 	gamestate.host_game()
+	gamestate.begin_game_server()
 	pass # Replace with function body.
+
+
 
