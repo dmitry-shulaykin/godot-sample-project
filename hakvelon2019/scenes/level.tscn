@@ -14,3 +14,20 @@ light_energy = 0.84
 transform = Transform( 1, 0, 0, 0, 0.896704, 0.44263, 0, -0.44263, 0.896704, 0, 20.5896, 39.8209 )
 
 [node name="Scene Root" parent="." instance=ExtResource( 1 )]
+
+[node name="desks" type="Spatial" parent="."]
+
+[node name="maximlipnin" type="Position3D" parent="desks"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7873, 2.58368, -17.4136 )
+
+[node name="andreyulrih" type="Position3D" parent="desks"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.784, 1.42941, -18.4652 )
+
+[node name="dmitriishulaikin" type="Position3D" parent="desks"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.9337, 1.42277, -6.80458 )
+
+[node name="alekseychichagov" type="Position3D" parent="desks"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0841, 1.19216, -15.0739 )
+
+[node name="viktoriyastarikova" type="Position3D" parent="desks"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8985, 1.03066, -10.4456 )

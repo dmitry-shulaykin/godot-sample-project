@@ -102,8 +102,8 @@ func add_player(id):
 	player_index += 1
 	pass
 
-func add_person():
-	print('adding person')
+func add_person(id, login, location):
+	print('adding person', id, login, location)
 	var person = load("res://scenes/person.tscn")
 	var player = person.instance()
 	player.set_translation(Vector3(0, 5, 0))

@@ -47,15 +47,14 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	# print(json.result)
 	print('request completed')
 	for employee in json.result:
-		print(employee['Login'], employee['Dislocation'])
+		var id = employee['Id']
+		var login = employee['Login']
 		var location = employee['Dislocation']
 		if !locations.has(location):
     		locations.append(location)
 
 		if location == "412 - AX Data Movement":
-			get_node('')
-			gamestate.add_person()
-	pass # Replace with function body.
+			gamestate.add_person(id, login, location)
 
 	get_node("loc_pnl/loc_lst").clear()
 	for location in locations:
