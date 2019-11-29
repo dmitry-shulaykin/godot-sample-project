@@ -13,19 +13,12 @@ margin_top = 197.0
 margin_right = 595.0
 margin_bottom = 349.0
 
-[node name="connect_btn" type="Button" parent="connect_pnl"]
-margin_left = 54.0
-margin_top = 30.0
-margin_right = 118.0
-margin_bottom = 67.0
-text = "connect"
-
 [node name="host_btn" type="Button" parent="connect_pnl"]
-margin_left = 52.0
-margin_top = 76.0
-margin_right = 117.0
-margin_bottom = 111.0
-text = "host"
+margin_left = 53.9
+margin_top = 48.45
+margin_right = 118.9
+margin_bottom = 83.45
+text = "connect"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="connect_pnl"]
 
@@ -85,6 +78,5 @@ margin_left = 10.0
 margin_top = 35.0
 margin_right = 154.0
 margin_bottom = 158.0
-[connection signal="pressed" from="connect_pnl/connect_btn" to="." method="_on_connect_btn_pressed"]
 [connection signal="pressed" from="connect_pnl/host_btn" to="." method="_on_host_btn_pressed"]
 [connection signal="request_completed" from="connect_pnl/HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

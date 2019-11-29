@@ -7,29 +7,17 @@ var locations = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	gamestate.connect("player_list_changed", self, "refresh_lobby")
+	#gamestate.connect("player_list_changed", self, "refresh_lobby")
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-func _on_connect_btn_pressed():
-	get_node("connect_pnl").hide()
-	
-	gamestate.join_game()
-	
-	get_node("ppl_pnl").show();
-	pass # Replace with function body.
-
-
 func _on_host_btn_pressed():
 	get_node("connect_pnl").hide()
 	
-	gamestate.host_game()
-	gamestate.begin_game_server()
-	
-	get_node("connect_pnl/HTTPRequest").request("http://prism/api/employees/all")
+	gamestate.join_game()
 	
 	get_node("ppl_pnl").show();
 	pass # Replace with function body.

@@ -1,93 +1,39 @@
 extends Node
 
-var players = {}
 var level = null
-var player_index = 0
-
-signal player_list_changed()
-
-func _ready():
-	get_tree().connect("network_peer_connected", self, "_player_connected")
-	get_tree().connect("network_peer_disconnected", self,"_player_disconnected")
-	get_tree().connect("connected_to_server", self, "_connected_ok")
-	get_tree().connect("connection_failed", self, "_connected_fail")
-	get_tree().connect("server_disconnected", self, "_server_disconnected")
-	pass
-
-func _server_disconnected():
-	print('_server_disconnected')
-	pass
-
-func _player_disconnected(id):
-	print('_player_disconnected: ', id)
-	pass
-
-func _connected_ok():
-	print('_connected_ok')
-	create_map()
-	begin_game_client()
-	rpc("register_player", get_tree().get_network_unique_id(), get_tree().get_network_unique_id())
-	pass
-	
-remote func register_player(id, new_player_name):
-	print('register player: ', id , ", ", new_player_name)
-	# id = new player id
-	if (get_tree().is_network_server()):
-		# If we are the server, let everyone know about the new player
-		rpc_id(id, "register_player", 1, 1) # Send myself to new dude
-		for p_id in players: # Then, for each remote player
-			rpc_id(id, "register_player", p_id, players[p_id]) # Send player to new dude
-			rpc_id(p_id, "register_player", id, new_player_name) # Send new dude to player
-
-	players[id] = new_player_name
-	emit_signal("player_list_changed")
-	# add_player(id)
-
-func get_player_list():
-	return players.values()
-
-func get_player_name():
-	return get_tree().get_network_unique_id()
-	
-remote func unregister_player(id):
-	players.erase(id)
-	emit_signal("player_list_changed")
-
-func _connected_fail():
-	print('_connected_fail')
-	pass
-
-func _player_connected(id):
-	print('_player_connected: ', id)
-	pass
-
-func host_game():
-	print("hosting akvelon map")
-	var host = WebSocketServer.new()
-	var error = host.listen(8080, PoolStringArray(), true)
-	print('server error: ', error)
-	get_tree().set_network_peer(host)
-	create_map();
-
+var ws = null
 
 func join_game():
-	print('joining akvelon map')
-	var client = WebSocketClient.new()
-	var url = "ws://127.0.0.1:" + str(8080)
-	var error = client.connect_to_url(url, PoolStringArray(), true)
-	print('error: ', error)
-	get_tree().set_network_peer(client)
-	begin_game_client();
-
-
-func begin_game_server():
-	assert(get_tree().is_network_server())
-	# add_player(1)
-
-func begin_game_client():
-	# add_player(get_tree().get_network_unique_id())
-	# create_map()
 	pass
+
+func _ready():
+	print('joining akvelon map')
+	ws = WebSocketClient.new()
+	ws.connect("connection_established", self, "_connection_established")
+	ws.connect("connection_closed", self, "_connection_closed")
+	ws.connect("connection_error", self, "_connection_error")
+	
+	var url = "ws://localhost:8081"
+	print("Connecting to " + url)
+	ws.connect_to_url(url)
+
+func _connection_established(protocol):
+	print("Connection established with protocol: ", protocol)
+	
+func _connection_closed():
+	print("Connection closed")
+
+func _connection_error():
+	print("Connection error")
+    
+func _process(delta):
+	if ws.get_connection_status() == ws.CONNECTION_CONNECTING || ws.get_connection_status() == ws.CONNECTION_CONNECTED:
+		ws.poll()
+	if ws.get_peer(1).is_connected_to_host():
+		ws.get_peer(1).put_var("HI")
+		if ws.get_peer(1).get_available_packet_count() > 0 :
+			var test = ws.get_peer(1).get_var()
+			print('recieve %s' % test)
 
 func add_person(id, login, location):
 	print('adding person', id, login, location)
@@ -102,8 +48,6 @@ func add_person(id, login, location):
 	
 	level.get_node("players").add_child(player)
 	print(level.get_node("players"))
-	print('person idx = ', player_index)
-	player_index += 1
 	player.set_translation(position_node.get_translation())
 	
 	var target = level.get_node("goto").get_translation();
