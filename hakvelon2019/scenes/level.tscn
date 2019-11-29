@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/floor.glb" type="PackedScene" id=1]
 [ext_resource path="res://accets/Table/Table.tscn" type="PackedScene" id=2]
 [ext_resource path="res://accets/Chair/Chair.tscn" type="PackedScene" id=3]
 [ext_resource path="res://accets/Monitor/Monitor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://accets/Keyboard/Keyboard.tscn" type="PackedScene" id=5]
 
 [sub_resource type="NavigationMesh" id=1]
 vertices = PoolVector3Array( -19.9151, 1.21562, -7.52648, -20.5151, 1.21562, -7.22648, -20.5151, 1.21562, -6.32648, -19.3151, 1.21562, -14.1265, -19.3151, 1.21562, -15.0265, -19.9151, 1.21562, -15.3265, -19.9151, 1.21562, -7.52648, -20.5151, 1.21562, -6.32648, -18.7151, 1.21562, -6.32648, -18.7151, 1.21562, -8.42648, -19.3151, 1.21562, -12.9265, -19.3151, 1.21562, -14.1265, -19.9151, 1.21562, -15.3265, -19.9151, 1.21562, -10.8265, -18.7151, 1.21562, -8.42648, -16.9151, 1.21562, -8.72648, -16.9151, 1.21562, -9.62648, -19.3151, 1.21562, -9.62648, -19.9151, 1.21562, -15.3265, -19.6151, 1.21562, -18.6265, -20.5151, 1.21562, -18.6265, -19.9151, 1.21562, -7.52648, -18.7151, 1.21562, -8.42648, -19.3151, 1.21562, -9.62648, -19.9151, 1.21562, -10.8265, -19.9151, 1.21562, -7.52648, -19.3151, 1.21562, -9.62648, -19.3151, 1.21562, -12.9265, -20.5151, 1.21562, -18.6265, -19.9151, 1.21562, -10.8265, -19.9151, 1.21562, -15.3265, -19.3151, 1.21562, -12.9265, -16.9151, 1.21562, -12.9265, -16.9151, 1.21562, -13.8265, -19.3151, 1.21562, -14.1265, -14.8151, 1.21562, -18.6265, -14.8151, 1.21562, -8.72648, -11.5151, 1.21562, -8.72648, -11.5151, 1.21562, -18.6265, -9.71511, 1.21562, -18.6265, -9.71511, 1.21562, -8.72648, -6.41511, 1.21562, -8.72648, -6.41511, 1.21562, -18.6265, -4.61511, 1.21562, -18.6265, -4.61511, 1.21562, -8.72648, 1.08489, 1.21562, -8.72648, 1.08489, 1.21562, -18.6265, 3.18489, 1.21562, -10.2265, 8.88489, 1.21562, -10.2265, 9.18489, 1.21562, -15.3265, 3.18489, 1.21562, -18.6265, 19.0849, 1.21562, -15.3265, 19.0849, 1.21562, -18.6265, 10.9849, 1.21562, -18.6265, 9.18489, 1.21562, -15.3265, 10.9849, 1.21562, -18.6265, 3.18489, 1.21562, -18.6265, 9.18489, 1.21562, -15.3265, 10.9849, 1.21562, -13.2265, 10.9849, 1.21562, -9.92648, 19.0849, 1.21562, -9.92648, 19.0849, 1.21562, -13.2265, -7.01511, 1.21562, -6.62648, -16.6151, 1.21562, -6.62648, -7.01511, 1.21562, -6.32648, 3.48489, 1.21562, 5.37352, 5.28489, 1.21562, 5.07352, 5.58489, 1.21562, 2.67352, 3.18489, 1.21562, 0.573523, 3.18489, 1.21562, 0.573523, 3.18489, 1.21562, 8.07352, 3.48489, 1.21562, 5.37352, 2.88489, 1.21562, -6.62648, -7.01511, 1.21562, -6.62648, -7.01511, 1.21562, -6.32648, 2.88489, 1.21562, -6.32648, 3.18489, 1.21562, 0.573523, 5.58489, 1.21562, 2.67352, 8.88489, 1.21562, 2.67352, 8.88489, 1.21562, -8.12648, 3.18489, 1.21562, -8.12648, 2.88489, 1.21562, -6.62648, 2.88489, 1.21562, -6.32648, 3.18489, 1.21562, 0.573523, 8.88489, 1.21562, 2.67352, 21.1849, 1.21562, 8.07352, 22.9849, 1.21562, 5.37352, 23.8849, 1.21562, 2.07352, 23.8849, 1.21562, 2.07352, 23.5849, 1.21562, -3.32648, 21.1849, 1.21562, -7.82648, 10.9849, 1.21562, -0.0264759, 10.9849, 1.21562, 8.07352, 21.1849, 1.21562, 8.07352, 21.1849, 1.21562, -7.82648, 10.9849, 1.21562, -7.82648, 10.9849, 1.21562, -0.0264759, -18.1151, 1.21562, 1.17352, -16.6151, 1.21562, -0.0264759, -16.6151, 1.21562, -4.22648, -22.9151, 1.21562, -4.22648, -14.8151, 1.21562, 1.17352, -16.3151, 1.21562, 2.37352, -16.3151, 1.21562, 3.27352, -12.4151, 1.21562, 7.47352, -7.91511, 1.21562, 7.47352, -9.71511, 1.21562, 2.67352, -7.91511, 1.21562, 7.47352, -7.61511, 1.21562, 2.97352, -9.71511, 1.21562, 2.67352, -9.71511, 1.21562, -4.22648, -14.8151, 1.21562, -4.22648, -14.8151, 1.21562, 1.17352, -9.71511, 1.21562, 2.67352, -7.61511, 1.21562, -4.22648, -7.61511, 1.21562, 0.873524, -4.01511, 1.21562, 0.873524, -4.01511, 1.21562, -4.22648, -1.91511, 1.21562, -4.22648, -1.91511, 1.21562, 0.873524, 1.08489, 1.21562, 0.873524, 1.08489, 1.21562, -4.22648, -7.61511, 1.21562, 2.97352, -7.91511, 1.21562, 7.47352, -4.91511, 1.21562, 7.47352, -4.91511, 1.21562, 7.47352, -3.71511, 1.21562, 8.97352, 1.08489, 1.21562, 8.07352, 1.08489, 1.21562, 2.97352, -7.61511, 1.21562, 2.97352, 0.784887, 1.21562, 10.1735, -1.61511, 1.21562, 11.0735, 4.98489, 1.21562, 18.8735, 11.8849, 1.21562, 18.8735, 9.78489, 1.21562, 10.1735, 11.8849, 1.21562, 18.8735, 19.0849, 1.21562, 18.8735, 19.0849, 1.21562, 10.1735, 9.78489, 1.21562, 10.1735 )
@@ -23,6 +24,7 @@ light_energy = 0.84
 transform = Transform( 1, 0, 0, 0, 0.896704, 0.44263, 0, -0.44263, 0.896704, 0, 14.6233, 22.4907 )
 
 [node name="desks" type="Spatial" parent="."]
+editor/display_folded = true
 
 [node name="maximlipnin" type="Position3D" parent="desks"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9417, 2.58368, -16.2265 )
@@ -76,63 +78,89 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -21.359, 1, -14.9432 )
 [node name="Table8" parent="floor_nav/NavigationMeshInstance/412/Tables" instance=ExtResource( 2 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -21.35, 1, -12.653 )
 
-[node name="Chairs" type="Spatial" parent="floor_nav/NavigationMeshInstance/412"]
+[node name="goto" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6377, 1.36119, -12.971 )
+
+[node name="Rooms" type="Spatial" parent="."]
+
+[node name="412" type="Spatial" parent="Rooms"]
+
+[node name="Chairs" type="Spatial" parent="Rooms/412"]
 editor/display_folded = true
 
-[node name="Chair" parent="floor_nav/NavigationMeshInstance/412/Chairs" instance=ExtResource( 3 )]
+[node name="Chair" parent="Rooms/412/Chairs" instance=ExtResource( 3 )]
 transform = Transform( 0.0279771, 0, -0.999609, 0, 1, 0, 0.999609, 0, 0.0279771, -22.1866, 1.2898, -12.9285 )
 
-[node name="Chair2" parent="floor_nav/NavigationMeshInstance/412/Chairs" instance=ExtResource( 3 )]
+[node name="Chair2" parent="Rooms/412/Chairs" instance=ExtResource( 3 )]
 transform = Transform( -0.302731, 0, 0.953076, 0, 1, 0, -0.953076, 0, -0.302731, -17.1072, 1.2898, -16.6883 )
 
-[node name="Chair3" parent="floor_nav/NavigationMeshInstance/412/Chairs" instance=ExtResource( 3 )]
+[node name="Chair3" parent="Rooms/412/Chairs" instance=ExtResource( 3 )]
 transform = Transform( 0.993091, 0, -0.11735, 0, 1, 0, 0.11735, 0, 0.993091, -22.8397, 1.2898, -6.78171 )
 
-[node name="Chair4" parent="floor_nav/NavigationMeshInstance/412/Chairs" instance=ExtResource( 3 )]
+[node name="Chair4" parent="Rooms/412/Chairs" instance=ExtResource( 3 )]
 transform = Transform( 0.990824, 0, 0.135157, 0, 1, 0, -0.135157, 0, 0.990824, -21.6172, 1.2898, -6.14219 )
 
-[node name="Chair5" parent="floor_nav/NavigationMeshInstance/412/Chairs" instance=ExtResource( 3 )]
+[node name="Chair5" parent="Rooms/412/Chairs" instance=ExtResource( 3 )]
 transform = Transform( 0.100805, 0, 0.994906, 0, 1, 0, -0.994906, 0, 0.100805, -17.1469, 1.2898, -11.5313 )
 
-[node name="Chair6" parent="floor_nav/NavigationMeshInstance/412/Chairs" instance=ExtResource( 3 )]
+[node name="Chair6" parent="Rooms/412/Chairs" instance=ExtResource( 3 )]
 transform = Transform( 0.0228308, 0, -0.999739, 0, 1, 0, 0.999739, 0, 0.0228308, -22.0749, 1.2898, -8.70024 )
 
-[node name="Chair7" parent="floor_nav/NavigationMeshInstance/412/Chairs" instance=ExtResource( 3 )]
+[node name="Chair7" parent="Rooms/412/Chairs" instance=ExtResource( 3 )]
 transform = Transform( 0.162716, 0, -0.986673, 0, 1, 0, 0.986673, 0, 0.162716, -23.1915, 1.2898, -14.8949 )
 
-[node name="Chair8" parent="floor_nav/NavigationMeshInstance/412/Chairs" instance=ExtResource( 3 )]
+[node name="Chair8" parent="Rooms/412/Chairs" instance=ExtResource( 3 )]
 transform = Transform( -0.942402, 0, 0.334484, 0, 1, 0, -0.334484, 0, -0.942402, -21.8005, 1.2898, -18.4317 )
 
-[node name="Monitors" type="Spatial" parent="floor_nav/NavigationMeshInstance/412"]
+[node name="Monitors" type="Spatial" parent="Rooms/412"]
 editor/display_folded = true
 transform = Transform( 0.00804361, 0, 0.199838, 0, 0.2, 0, -0.199838, 0, 0.00804361, -21.2712, 1.94506, -12.8111 )
 
-[node name="Monitor" parent="floor_nav/NavigationMeshInstance/412/Monitors" instance=ExtResource( 4 )]
+[node name="Monitor" parent="Rooms/412/Monitors" instance=ExtResource( 4 )]
 transform = Transform( 0.972634, 0, -0.232341, 0, 1, 0, 0.232341, 0, 0.972634, 7.09455, 0, -0.323013 )
 
-[node name="Monitor2" parent="floor_nav/NavigationMeshInstance/412/Monitors" instance=ExtResource( 4 )]
+[node name="Monitor2" parent="Rooms/412/Monitors" instance=ExtResource( 4 )]
 transform = Transform( 0.995317, 0, 0.096661, 0, 1, 0, -0.096661, 0, 0.995317, 11.2574, 0, -0.0155945 )
 
-[node name="Monitor3" parent="floor_nav/NavigationMeshInstance/412/Monitors" instance=ExtResource( 4 )]
+[node name="Monitor3" parent="Rooms/412/Monitors" instance=ExtResource( 4 )]
 transform = Transform( 0.132865, 0, 0.991134, 0, 1, 0, -0.991134, 0, 0.132865, -25.648, 0, -3.23243 )
 
-[node name="Monitor4" parent="floor_nav/NavigationMeshInstance/412/Monitors" instance=ExtResource( 4 )]
+[node name="Monitor4" parent="Rooms/412/Monitors" instance=ExtResource( 4 )]
 transform = Transform( -0.281, 0, 0.959708, 0, 1, 0, -0.959708, 0, -0.281, -25.9739, 0, -6.96339 )
 
-[node name="Monitor5" parent="floor_nav/NavigationMeshInstance/412/Monitors" instance=ExtResource( 4 )]
+[node name="Monitor5" parent="Rooms/412/Monitors" instance=ExtResource( 4 )]
 transform = Transform( 0.539691, 0, -0.841863, 0, 1, 0, 0.841863, 0, 0.539691, 22.7021, 0, -1.97113 )
 
-[node name="Monitor6" parent="floor_nav/NavigationMeshInstance/412/Monitors" instance=ExtResource( 4 )]
+[node name="Monitor6" parent="Rooms/412/Monitors" instance=ExtResource( 4 )]
 transform = Transform( 0.0877557, 0, -0.996142, 0, 1, 0, 0.996142, 0, 0.0877557, 10.9493, 0, 21.1454 )
 
-[node name="Monitor7" parent="floor_nav/NavigationMeshInstance/412/Monitors" instance=ExtResource( 4 )]
+[node name="Monitor7" parent="Rooms/412/Monitors" instance=ExtResource( 4 )]
 transform = Transform( -0.999196, 0, -0.0400921, 0, 1, 0, 0.0400921, 0, -0.999196, 19.7738, 0, 11.8069 )
 
-[node name="Monitor8" parent="floor_nav/NavigationMeshInstance/412/Monitors" instance=ExtResource( 4 )]
+[node name="Monitor8" parent="Rooms/412/Monitors" instance=ExtResource( 4 )]
 transform = Transform( 0.994201, 0, 0.107534, 0, 1, 0, -0.107534, 0, 0.994201, 0.472534, 0, 0.440994 )
 
-[node name="Monitor9" parent="floor_nav/NavigationMeshInstance/412/Monitors" instance=ExtResource( 4 )]
+[node name="Monitor9" parent="Rooms/412/Monitors" instance=ExtResource( 4 )]
 transform = Transform( 0.0328494, 0, -0.99946, 0, 1, 0, 0.99946, 0, 0.0328494, 20.9731, 0, -6.40619 )
 
-[node name="goto" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6377, 1.36119, -12.971 )
+[node name="Keyboards" type="Spatial" parent="Rooms/412"]
+editor/display_folded = true
+transform = Transform( 0.0268596, 0, -0.399097, 0, 0.4, 0, 0.399097, 0, 0.0268596, -21.6142, 1.82066, -12.9194 )
+
+[node name="Keyboard" parent="Rooms/412/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( -0.0181248, 0, 0.999835, 0, 1, 0, -0.999835, 0, -0.0181248, 13.8621, 0, 3.69408 )
+
+[node name="Keyboard2" parent="Rooms/412/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( 0.996871, 0, -0.0790467, 0, 1, 0, 0.0790467, 0, 0.996871, -5.38774, 0, -0.504333 )
+
+[node name="Keyboard3" parent="Rooms/412/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -2.23517e-008, 0, 1, 0, 2.23517e-008, 0, 1, 0, 0, -0.166424 )
+
+[node name="Keyboard4" parent="Rooms/412/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( -0.053414, 0, -0.998572, 0, 1, 0, 0.998572, 0, -0.053414, -11.3447, 0, 0.951183 )
+
+[node name="Keyboard5" parent="Rooms/412/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( -0.0840423, 0, -0.996462, 0, 1, 0, 0.996462, 0, -0.0840423, -5.05543, 0, -12.0093 )
+
+[node name="Keyboard6" parent="Rooms/412/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( -0.997058, 0, 0.0766416, 0, 1, 0, -0.0766416, 0, -0.997058, -8.65979, 0, -8.80119 )
