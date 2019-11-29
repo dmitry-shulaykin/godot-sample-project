@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://accets/Chair/chair.dae" type="PackedScene" id=1]
+[ext_resource path="res://accets/Chair/Leather.material" type="Material" id=2]
+[ext_resource path="res://accets/Chair/Metall.material" type="Material" id=3]
+
+[node name="Chair" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.291023, 0 )
+
+[node name="Back Rest" parent="." index="0"]
+material/0 = ExtResource( 2 )
+
+[node name="Frame" parent="." index="1"]
+material/0 = ExtResource( 3 )
+
+[node name="Seat Squab" parent="." index="2"]
+material/0 = ExtResource( 2 )
