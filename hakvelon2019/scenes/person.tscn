@@ -1,12 +1,36 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/person.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Skin.material" type="Material" id=2]
-[ext_resource path="res://scenes/Shirt.material" type="Material" id=3]
-[ext_resource path="res://scenes/Vest.material" type="Material" id=4]
-[ext_resource path="res://scenes/Pants.material" type="Material" id=5]
-[ext_resource path="res://scenes/Hat.material" type="Material" id=6]
-[ext_resource path="res://scenes/Face.material" type="Material" id=7]
+
+[sub_resource type="SpatialMaterial" id=10]
+resource_name = "Skin"
+params_cull_mode = 2
+metallic = 1.0
+
+[sub_resource type="SpatialMaterial" id=11]
+resource_name = "Shirt"
+params_cull_mode = 2
+metallic = 1.0
+
+[sub_resource type="SpatialMaterial" id=12]
+resource_name = "Vest"
+params_cull_mode = 2
+metallic = 1.0
+
+[sub_resource type="SpatialMaterial" id=13]
+resource_name = "Pants"
+params_cull_mode = 2
+metallic = 1.0
+
+[sub_resource type="SpatialMaterial" id=14]
+resource_name = "Hat"
+params_cull_mode = 2
+metallic = 1.0
+
+[sub_resource type="SpatialMaterial" id=15]
+resource_name = "Face"
+params_cull_mode = 2
+metallic = 1.0
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Body 2"
@@ -17,7 +41,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97731,
 "index_count": 3876,
-"material": ExtResource( 2 ),
+"material": SubResource( 10 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.196513, -0.0185906, -0.113215, 0.140097, 0.0815365, 0.146437 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.174394, 1.9956, -0.15398, 0.348787, 0.187541, 0.293622 ), AABB( -0.174394, 1.9956, -0.15398, 0.348787, 0.187541, 0.293622 ), AABB( -0.491622, 2.0726, -0.491622, 0.983245, 1.05547, 0.983245 ), AABB( 0, 1.73708, -0.15398, 0.439971, 0.430661, 0.293622 ), AABB( 0.0971397, 1.73708, -0.145441, 0.875405, 0.34972, 0.284964 ), AABB( 0.722293, 1.74379, -0.12491, 0.777611, 0.32751, 0.237517 ), AABB( 1.20509, 1.74148, -0.12491, 0.414741, 0.329817, 0.237517 ), AABB( -0.439971, 1.73708, -0.15398, 0.439981, 0.430661, 0.293622 ), AABB( -0.972545, 1.73708, -0.145441, 0.875405, 0.34972, 0.284964 ), AABB( -1.4999, 1.74379, -0.12491, 0.777611, 0.32751, 0.237517 ), AABB( -1.61983, 1.74148, -0.12491, 0.414741, 0.329817, 0.237517 ), AABB( 0.145837, 0.470219, -0.149704, 0.23088, 0.134684, 0.250389 ), AABB( 0.145837, -0.0185906, -0.149704, 0.23088, 0.623493, 0.250389 ), AABB( -0.376717, 0.470219, -0.149704, 0.23088, 0.134684, 0.250389 ), AABB( -0.376717, -0.0185906, -0.149704, 0.23088, 0.623493, 0.250389 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.33661, -0.0185906, -0.113215, 0.140097, 0.0815365, 0.146437 ) ],
 "vertex_count": 2592
@@ -29,7 +53,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97731,
 "index_count": 816,
-"material": ExtResource( 3 ),
+"material": SubResource( 11 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.377797, 1.04446, 0.0885092, 0.755594, 0.177322, 0.124305 ), AABB( -0.393634, 1.04446, -0.331614, 0.787268, 0.260647, 0.519652 ), AABB( -0.418848, 1.05735, -0.331614, 0.837696, 0.791446, 0.544428 ), AABB( -0.41846, 1.55901, -0.200496, 0.836919, 0.486541, 0.402958 ), AABB( -0.241037, 1.84973, -0.180272, 0.482074, 0.195822, 0.376007 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 1.08072, -0.311412, 0.439971, 0.964824, 0.524226 ), AABB( 0.120958, 1.55322, -0.191456, 0.319013, 0.492324, 0.384434 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.439971, 1.08072, -0.311412, 0.439981, 0.964824, 0.524226 ), AABB( -0.439971, 1.55322, -0.191456, 0.319013, 0.492324, 0.384434 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 1.04446, -0.331614, 0.393634, 0.510453, 0.544428 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.393634, 1.04446, -0.331614, 0.393644, 0.510453, 0.544428 ) ],
 "vertex_count": 548
@@ -41,7 +65,7 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 97731,
 "index_count": 456,
-"material": ExtResource( 4 ),
+"material": SubResource( 12 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.347548, 1.20288, 0.0885092, 0.695097, 0.358065, 0.12733 ), AABB( -0.363797, 1.22284, -0.281315, 0.727595, 0.356158, 0.28063 ), AABB( -0.363797, 1.20288, -0.281315, 0.727595, 0.640954, 0.497154 ), AABB( -0.294203, 1.38693, -0.232151, 0.588406, 0.671903, 0.44799 ), AABB( -0.241037, 1.93107, -0.170528, 0.482074, 0.12777, 0.332514 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 1.21463, -0.264036, 0.363797, 0.844205, 0.479875 ), AABB( 0.120958, 1.55322, -0.191456, 0.199811, 0.505614, 0.384435 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.363797, 1.21463, -0.264036, 0.363807, 0.844205, 0.474912 ), AABB( -0.320768, 1.55322, -0.191456, 0.199811, 0.505614, 0.384435 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 1.20288, -0.281315, 0.363797, 0.352037, 0.49353 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.363797, 1.20288, -0.281315, 0.363807, 0.352037, 0.49354 ) ],
 "vertex_count": 304
@@ -53,7 +77,7 @@ surfaces/3 = {
 "blend_shape_data": [  ],
 "format": 97731,
 "index_count": 696,
-"material": ExtResource( 5 ),
+"material": SubResource( 13 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.370791, 0.646919, -0.175487, 0.741583, 0.445937, 0.37367 ), AABB( -0.385695, 0.646919, -0.322047, 0.77139, 0.577483, 0.510085 ), AABB( -0.385695, 1.00382, -0.322047, 0.77139, 0.220581, 0.520229 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0.470219, -0.322047, 0.432643, 0.754183, 0.520229 ), AABB( 0.0893625, 0.470219, -0.231607, 0.343281, 0.17671, 0.401174 ), AABB( -0.432643, 0.470219, -0.322047, 0.432653, 0.754183, 0.520229 ), AABB( -0.432643, 0.470219, -0.231607, 0.343281, 0.1767, 0.401174 ) ],
 "vertex_count": 480
@@ -65,7 +89,7 @@ surfaces/4 = {
 "blend_shape_data": [  ],
 "format": 97731,
 "index_count": 768,
-"material": ExtResource( 6 ),
+"material": SubResource( 14 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.58859, 2.71621, -0.559096, 1.17718, 0.600737, 1.28108 ) ],
 "vertex_count": 528
@@ -77,7 +101,7 @@ surfaces/5 = {
 "blend_shape_data": [  ],
 "format": 97731,
 "index_count": 960,
-"material": ExtResource( 7 ),
+"material": SubResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.368757, 2.47045, 0.385301, 0.737513, 0.287687, 0.116211 ) ],
 "vertex_count": 168
