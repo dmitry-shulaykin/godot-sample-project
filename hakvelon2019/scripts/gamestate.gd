@@ -113,7 +113,11 @@ func add_person(id, login, location):
 
 func create_map():
 	# Change scene
-	level = load("res://scenes/level.tscn").instance()
+	var levelmodel = load("res://scenes/level.tscn")
+	print(levelmodel)
+	if levelmodel == null:
+		return
+	level = levelmodel.instance()
 	get_tree().get_root().add_child(level)
 	#get_tree().get_root().get_node("lobby").hide()
 	pass;
