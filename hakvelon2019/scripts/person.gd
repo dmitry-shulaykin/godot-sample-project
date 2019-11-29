@@ -30,19 +30,15 @@ func _physics_process(delta):
 		# get teh imput here  
 		# var bombing = Input.is_action_pressed("set_bomb")
 		if (Input.is_action_pressed("move_left")):
-			print('left')
 			velocity += Vector3.LEFT * speed
 			self.set_rotation( Vector3( 0 , -.5*PI , 0 ) )
 		if (Input.is_action_pressed("move_right")):
-			print('move_right')
 			velocity += Vector3.RIGHT * speed
 			self.set_rotation( Vector3( 0 , .5*PI , 0 ))
 		if (Input.is_action_pressed("move_up")):
-			print('move_up')
 			velocity += Vector3.FORWARD * speed
 			self.set_rotation( Vector3( 0 , PI , 0 ) )
 		if (Input.is_action_pressed("move_down")):
-			print('move_down')
 			velocity += Vector3.BACK * speed
 			self.set_rotation( Vector3( 0 ,2*PI , 0 ) )
 		
@@ -51,7 +47,6 @@ func _physics_process(delta):
 		rset("slave_pos", self.get_translation()  )
 		rset("slave_dir" , self.get_rotation() )
 	else:
-		print('slave')
 		self.set_translation(slave_pos)
 		self.set_rotation(slave_dir)
 		velocity = slave_motion
@@ -77,7 +72,6 @@ func _physics_process(delta):
 		
 	velocity = move_and_slide( velocity , Vector3.UP)
 	if (not is_network_master() ):
-		print('slave')
 		slave_pos = self.get_translation() # To avoid jitter
 
 	# var pos = get_translation()

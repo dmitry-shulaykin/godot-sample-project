@@ -26,5 +26,65 @@ margin_top = 76.0
 margin_right = 117.0
 margin_bottom = 111.0
 text = "host"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="connect_pnl"]
+
+[node name="ppl_pnl" type="Panel" parent="."]
+visible = false
+margin_right = 137.0
+margin_bottom = 148.0
+
+[node name="Label" type="Label" parent="ppl_pnl"]
+margin_left = 11.0
+margin_top = 9.0
+margin_right = 127.0
+margin_bottom = 32.0
+text = "Connected ppl"
+
+[node name="ppl_lst" type="ItemList" parent="ppl_pnl"]
+margin_left = 15.0
+margin_top = 27.0
+margin_right = 120.0
+margin_bottom = 134.0
+
+[node name="loc_pnl" type="Panel" parent="."]
+margin_left = 858.0
+margin_top = 3.0
+margin_right = 1024.0
+margin_bottom = 150.0
+
+[node name="Label" type="Label" parent="loc_pnl"]
+margin_left = 20.0
+margin_top = 12.0
+margin_right = 144.0
+margin_bottom = 36.0
+text = "Locations"
+
+[node name="loc_lst" type="ItemList" parent="loc_pnl"]
+margin_left = 12.0
+margin_top = 30.0
+margin_right = 146.0
+margin_bottom = 134.0
+
+[node name="mtng_pnl" type="Panel" parent="."]
+margin_left = 855.0
+margin_top = 427.0
+margin_right = 1023.0
+margin_bottom = 601.0
+
+[node name="Label" type="Label" parent="mtng_pnl"]
+margin_left = 6.99817
+margin_top = 5.83179
+margin_right = 163.998
+margin_bottom = 36.8318
+text = "Meetigns panel
+"
+
+[node name="mtng_lst" type="ItemList" parent="mtng_pnl"]
+margin_left = 10.0
+margin_top = 35.0
+margin_right = 154.0
+margin_bottom = 158.0
 [connection signal="pressed" from="connect_pnl/connect_btn" to="." method="_on_connect_btn_pressed"]
 [connection signal="pressed" from="connect_pnl/host_btn" to="." method="_on_host_btn_pressed"]
+[connection signal="request_completed" from="connect_pnl/HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
