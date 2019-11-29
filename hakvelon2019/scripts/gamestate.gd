@@ -89,29 +89,26 @@ func begin_game_client():
 	# create_map()
 	pass
 
-func add_player(id):
-	print('adding player', id)
-	var person = load("res://scenes/person.tscn")
-	var player = person.instance()
-	player.set_translation(Vector3(0, 5, 0))
-	player.set_network_master(id)
-	level.get_node("players").add_child(player)
-	print(level.get_node("players"))
-	print(player)
-	print('player idx = ', player_index, ' id = ', id)
-	player_index += 1
-	pass
-
 func add_person(id, login, location):
 	print('adding person', id, login, location)
 	var person = load("res://scenes/person.tscn")
 	var player = person.instance()
 	player.set_translation(Vector3(0, 5, 0))
 	## player.set_network_master(id)
+	var name_parts = login.split('.')
+	var position_node = level.get_node('desks/' + name_parts[0] + name_parts[1])
+	if position_node == null:
+		return
+	
 	level.get_node("players").add_child(player)
 	print(level.get_node("players"))
 	print('person idx = ', player_index)
 	player_index += 1
+	player.set_translation(position_node.get_translation())
+	
+	var target = level.get_node("goto").get_translation();
+	player.move_to(target)
+	
 	pass
 
 func create_map():
