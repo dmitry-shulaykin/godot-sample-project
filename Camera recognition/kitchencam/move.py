@@ -10,20 +10,10 @@ frame_height =int( cap.get( cv2.CAP_PROP_FRAME_HEIGHT))
 
 fourcc = cv2.VideoWriter_fourcc('X','V','I','D')
 
-xMin400 = 750
-xMax400 = 950
-yMin400 = 300
-yMax400 = frame_height
-
-xMin401 = 1100
-xMax401 = 1300
-yMin401 = 250
-yMax401 = frame_height - 250
-
-xMin402 = 1500
-xMax402 = 1600
-yMin402 = 200
-yMax402 = frame_height - 500
+xMin = 450
+xMax = frame_width - 50
+yMin = 70
+yMax = 300
 
 out = cv2.VideoWriter("output.avi", fourcc, 5.0, (frame_width,frame_height))
 
@@ -50,19 +40,9 @@ while cap.isOpened():
         if w < 50 or h < 50:
             continue
 
-        if y + h / 2 > yMin400 and y + h / 2 < yMax400 and x + w / 2 > xMin400 and x + w / 2 < xMax400:
+        if y + h / 2 > yMin and y + h / 2 < yMax and x + w / 2 > xMin and x + w / 2 < xMax:
             message = "400"
             color = (255, 0, 0)
-            break
-
-        if y + h / 2 > yMin401 and y + h / 2 < yMax401 and x + w / 2 > xMin401 and x + w / 2 < xMax401:
-            message = "401"
-            color = (0, 255, 0)
-            break
-
-        if y + h / 2 > yMin402 and y + h / 2 < yMax402 and x + w / 2 > xMin402 and x + w / 2 < xMax402:
-            message = "402"
-            color = (0, 0, 255)
             break
 
         if cv2.contourArea(contour) < 900:
@@ -70,7 +50,7 @@ while cap.isOpened():
 
     if message != "Not found":
         cv2.rectangle(frame1, (x, y), (x+w, y+h), color, 2)
-        cv2.putText(frame1, "Status: {} x: {} y: {} w: {} h: {}".format(message, x + w / 2, y + h / 2, w, h), (10, 20), cv2.FONT_HERSHEY_SIMPLEX,
+        cv2.putText(frame1, "Status: {} x: {} y: {} w: {} h: {}".format(message, x + w / 2, y + h / 2, w, h), (10, 20), cv2.FONT_HERSHEY_COMPLEX_SMALL,
             1, (0, 0, 255), 3)
 
     image = cv2.resize(frame1, (frame_width,frame_height))
