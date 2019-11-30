@@ -19,7 +19,7 @@ db.once('open', function () {
     console.log('connected mongoose')
 });
 
-async function poll_updates_from_prism() {
+async function poll_updates_from_prism(cam) {
     await sql.connect('mssql://PortalLogReader:7BDq5O6mv2@10.0.0.129/PassFace_Repl');
     const result = (await sql.query`
     select top (50) [Num],[LTime],U.DBName,U.Surname
@@ -33,7 +33,7 @@ async function poll_updates_from_prism() {
     for (let personLocation of result) {
         const person = personLocations.find(p => p.last_name === personLocation.Surname && p.first_name === personLocation.DBName);
 
-        if (person && result.Num === ENTER_REGULATOR) {
+        if (!person && result.Num === ENTER_REGULATOR) {
             const roomPerson = persons.find(p => p.last_name === personLocation.Surname && p.first_name === personLocation.DBName);
             if (roomPerson) {
                 const locationRoom = roomNumber > 400 && roomNumber < 499 ? roomPerson.home : KITCHEN_NAME;
@@ -41,8 +41,13 @@ async function poll_updates_from_prism() {
                 personLocations.push({ room: locationRoom, first_name: personLocation.DBName, last_name: personLocation.Surname, date_time: new Date(personLocation.LTime) })
 
                 updatePersonLocation(roomPerson.id, locationRoom);
-                continue;
             }
+
+            if (cam) {
+                cam.personId = person ? person.id : roomPerson.id;
+            }
+
+            continue;
         }
 
         if (person && result.Num === EXIT_REGULATOR) {
@@ -60,7 +65,24 @@ async function poll_updates_from_prism() {
 
             personLocations[index].date_time = new Date(personLocation.LTime);
             updatePersonLocation(personLocations[index].id, personLocations[index].Dislocation);
+
+            if (cam) {
+                cam.personId = personLocations[index].id;
+            }
+
             continue;
+        }
+    }
+
+    for (const cam of cams) {
+        const datetime = Date.now();
+        if (datetime - cam > 5000) {
+            const indexCam = cams.indexOf(cam);
+
+            if (indexCam > -1) {
+                cams.splice(indexCam, 1);
+                continue;
+            }
         }
     }
 }
@@ -101,7 +123,7 @@ async function persist_rooms_users_list() {
                 Dislocation = hakvelonRoomName;
             }
 
-            if (employee_location == null){
+            if (employee_location == null) {
                 continue;
             }
 
@@ -142,11 +164,11 @@ wss.on('connection', async ws => {
         console.log(recieve.getVar())
     })
     console.log('$$', personLocations.length)
-    for (const person of personLocations){
+    for (const person of personLocations) {
         console.log('sending ', person)
         // ws.send(JSON.stringify({event_type: 'load_person', person}))
         let buffer = new gdCom.GdBuffer()
-        buffer.putString(JSON.stringify({event_type: 'load_person', person}))
+        buffer.putString(JSON.stringify({ event_type: 'load_person', person }))
         ws.send(buffer.getBuffer())
         await delay(100);
     }
@@ -165,9 +187,67 @@ app.get('/room_names', async (req, res) => {
 })
 
 app.post('/cam', function (req, res) {
-    console.log(req.body.cam_id)
-    console.log(req.body.room_id)
-    res.json({ ok: true })
+    const camId = req.body.camId;
+    const roomId = req.body.roomId;
+    console.log(camId);
+    console.log(roomId);
+
+    const datetime = Date.now();
+
+    switch (roomId) {
+        case 400:
+            cams.push({ id: camId, room: roomId, date_time: datetime, personId: -1 });
+            poll_updates_from_prism(cams[cams.length - 1]);
+            break;
+        case 401:
+            var cam = cams.pop();
+            if (cam.personId !== -1) {
+                setTimeout(function changePosition(count, id) {
+                    if (cams.length === count) {
+                        updatePersonLocation(id, "401 - Admins");
+                    }
+                }, 5000, cams.length, cam.personId);
+                if (datetime - cam.datetime < 5000) {
+                    cams.push(cam);
+                    cams.push({ id: camId, room: roomId, date_time: datetime, personId: cam.personId });
+                    break;
+                }
+            }
+
+            break;
+        case 402:
+            var cam = cams.pop();
+            if (cam.personId !== -1) {
+                setTimeout(function changePosition(count, id) {
+                    if (cams.length === count) {
+                        updatePersonLocation(id, "402 - CD2");
+                    }
+                }, 5000, cams.length, cam.personId);
+                if (datetime - cam.datetime < 5000) {
+                    cams.push(cam);
+                    cams.push({ id: camId, room: roomId, date_time: datetime, personId: cam.personId });
+                    break;
+                }
+            }
+            break;
+        case 499:
+            var cam = cams.pop();
+            if (cam.personId !== -1) {
+                setTimeout(function changePosition(count, id) {
+                    if (cams.length === count) {
+                        updatePersonLocation(id, KITCHEN_NAME);
+                    }
+                }, 5000, cams.length, cam.personId);
+                if (datetime - cam.datetime < 5000) {
+                    cams.push(cam);
+                    cams.push({ id: camId, room: roomId, date_time: datetime, personId: cam.personId });
+                    break;
+                }
+            }
+            break;
+    }
+
+    res.json({ ok: true });
 })
 
 app.post('/person/:id/home', function (req, res) {
