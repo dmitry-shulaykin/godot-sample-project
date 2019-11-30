@@ -19,6 +19,8 @@ db.once('open', function () {
     console.log('connected mongoose')
 });
 
+// var last_handled_date = new Date(personLocation.LTime)
+
 async function poll_updates_from_prism() {
     await sql.connect('mssql://PortalLogReader:7BDq5O6mv2@10.0.0.129/PassFace_Repl');
     const result = (await sql.query`
@@ -156,6 +158,10 @@ app.get('/persons', async (req, res) => {
     res.json(persons)
 })
 
+app.get('/names', async (req, res) => {
+    res.json(persons.map(p => ({id: p.id, name: p.first_name + " " + p.last_name})))
+})
+
 app.get('/personLocations', async (req, res) => {
     res.json(personLocations)
 })
@@ -179,8 +185,8 @@ app.post('/person/:id/home', function (req, res) {
 app.post('/person/:id/location', function (req, res) {
     try {
         console.log(req.params.id);
-        print(req.body.position)
-        updatePersonLocation()
+        console.log(req.body.position)
+        updatePersonLocation(req.params.id, req.body.position)
         res.json({ ok: true })
     } catch (error) {
         console.log(error)
@@ -194,11 +200,13 @@ async function updatePersonLocation(personId, location) {
     wss.clients.forEach(ws => {
         let buffer = new gdCom.GdBuffer()
         const person = persons.find(p => p.id == personId);
-        person.last_location = location;
-        console.log('change_location', person, location, personId)
-        buffer.putString(JSON.stringify({ event_type: 'change_location', person_id: personId, location, person }))
-        buffer.putVar(Math.random())
-        ws.send(buffer.getBuffer())
+        if (person) {
+        // person.last_location = location;
+            console.log('change_location', person, location, personId)
+            buffer.putString(JSON.stringify({ event_type: 'change_location', person_id: personId, location, person }))
+            buffer.putVar(Math.random())
+            ws.send(buffer.getBuffer())
+        }
     })
 }
 
