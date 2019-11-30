@@ -41,8 +41,14 @@ func _process(delta):
 			var buffer = StreamPeerBuffer.new()
 			buffer.set_data_array(packet)
 			
-			var type = buffer.get_string()
-			print('Recieve %s' % type)
+			var event = buffer.get_string()
+			var result = JSON.parse(event).result
+			var type = result['event_type']
+			print('Recieve: ', type)
+			
+			if type == 'load_person':
+				var person = event['person']
+				print(person)
 
 func add_person(id, login, location):
 	print('adding person', id, login, location)
