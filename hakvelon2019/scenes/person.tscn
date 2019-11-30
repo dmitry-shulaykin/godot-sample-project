@@ -127,9 +127,10 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0.
 shape = SubResource( 11 )
 
 [node name="Talking" type="Spatial" parent="."]
-transform = Transform( 0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0 )
+transform = Transform( -0.15, 0, -1.31134e-008, 0, 0.15, 0, 1.31134e-008, 0, -0.15, 0, 0, 0 )
 
 [node name="Skeleton" type="Skeleton" parent="Talking"]
+transform = Transform( -0.699633, 0, 0.0226631, 0, 0.7, 0, -0.0226631, 0, -0.699633, 0, 0, 0 )
 bones_in_world_transform = true
 bones/0/name = "Bone"
 bones/0/parent = -1
@@ -296,7 +297,7 @@ material/3 = SubResource( 9 )
 material/4 = SubResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Female_RunningJump"
+autoplay = "Female_Walk"
 anims/Door.001 = ExtResource( 2 )
 anims/Female_Clapping = ExtResource( 3 )
 anims/Female_Death = ExtResource( 4 )
@@ -316,3 +317,5 @@ anims/StairsAction = ExtResource( 17 )
 anims/StairsAction.001 = ExtResource( 18 )
 anims/StairsAction.002 = ExtResource( 19 )
 anims/Talking.001 = ExtResource( 20 )
+
+[node name="Spatial" type="Spatial" parent="."]

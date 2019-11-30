@@ -24,8 +24,9 @@ func _physics_process(delta):
 		
 		
 		if move_vec.length() < 0.1:
-			look_at(path[path_ind],Vector3(0,1,0))
 			path_ind += 1
+			if (path_ind != path.size()) :
+				look_at(path[path_ind],Vector3(0,1,0))
 		else:
 			move_and_slide(move_vec.normalized() * move_speed, Vector3(0, 1, 0))
  
