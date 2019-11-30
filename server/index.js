@@ -31,10 +31,10 @@ async function poll_updates_from_prism() {
     console.log(result)
 
     for (let personLocation of result) {
-        const person = personLocations.filter(p => p.last_name === personLocation.Surname && p.first_name === personLocation.DBName);
+        const person = personLocations.find(p => p.last_name === personLocation.Surname && p.first_name === personLocation.DBName);
 
-        if (person.length === 0 && result.Num === ENTER_REGULATOR) {
-            const roomPerson = persons.filter(p => p.last_name === personLocation.Surname && p.first_name === personLocation.DBName)[0];
+        if (person && result.Num === ENTER_REGULATOR) {
+            const roomPerson = persons.find(p => p.last_name === personLocation.Surname && p.first_name === personLocation.DBName);
             if (roomPerson) {
                 const locationRoom = roomNumber > 400 && roomNumber < 499 ? roomPerson.home : KITCHEN_NAME;
 
