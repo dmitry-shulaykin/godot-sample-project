@@ -403,3 +403,10 @@ transform = Transform( 0.0508672, 0, -0.396753, 0, 0.4, 0, 0.396753, 0, 0.050867
 
 [node name="Keyboard2" parent="Rooms/407/Keyboards" instance=ExtResource( 5 )]
 transform = Transform( 0.4, 0, 9.31323e-010, 0, 0.4, 0, -9.31323e-010, 0, 0.4, 0.0738244, 0, -0.0449505 )
+
+[node name="Compucters" type="Spatial" parent="Rooms/407"]
+editor/display_folded = true
+transform = Transform( -0.592906, 0, 0.805271, 0, 1, 0, -0.805271, 0, -0.592906, 5.06795, 1.78062, 18.3449 )
+
+[node name="Computer" parent="Rooms/407/Compucters" instance=ExtResource( 6 )]
+transform = Transform( -0.997979, 0, -0.06355, 0, 1, 0, 0.06355, 0, -0.997979, -0.219841, 0, 0.0139999 )
