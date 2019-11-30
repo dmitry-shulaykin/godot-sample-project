@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 var mongoose = require('mongoose');
 const sql = require('mssql')
 
-mongoose.connect('mongodb://root:example@localhost/admin');
+mongoose.connect('mongodb://root:example@10.0.9.34/admin');
 
 const ENTER_REGULATOR = 30;
 const EXIT_REGULATOR = 11;
@@ -27,6 +27,9 @@ setInterval(() => {
 }, 60 * 1000)
 
 const PRISM_URL = "http://prism/api/employees/all"
+const PRISM_CURENT_LOCATION_URL="http://prism/api/employees/currentlocation/?id="
+
+const hakvelonRoomName = "407 - Hakvelon";
 
 const PositionSchema = new mongoose.Schema({ x: Number, y: Number, z: Number });
 
@@ -60,15 +63,27 @@ var room_names = new Set()
 
 async function persist_rooms_users_list(){
     try {
-
-
         console.log('persisting rooms state');
         const resp = await fetch(PRISM_URL);
         const employee_list = await resp.json();
         // console.log(json)
         for (const employee of employee_list) {
-            const {Id, Dislocation, InBuilding, Login, FirstName, LastName} = employee;
+            let {Id, Dislocation, InBuilding, Login, FirstName, LastName} = employee;
             if (InBuilding) {
+                const locationResp = await fetch(PRISM_CURENT_LOCATION_URL);
+                const employee_location = await locationResp.json();
+
+                if (Id === 492 || Id === 530) {
+                    Dislocation = hakvelonRoomName;
+                }
+
+                const locationMatch = employee_location['Info'].match(/(2|3|4|5)/);
+
+                if (locationMatch && locationMatch[0] === '4') {
+                    const roomNumber = parseInt(Dislocation);
+                    updatePersonLocation(Id, roomNumber > 400 && roomNumber < 499 ? Dislocation : 'Kitchen');
+                }
+
                 persons.push({id: Id, home: Dislocation, inBuilding: InBuilding, login: Login, last_location: Dislocation, first_name: FirstName, last_name: LastName})
             }
             room_names.add(Dislocation)
