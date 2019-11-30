@@ -10,16 +10,59 @@ mongoose.connect('mongodb://root:example@10.0.9.34/admin');
 const ENTER_REGULATOR = 30;
 const EXIT_REGULATOR = 11;
 
+const KITCHEN_NAME = 'Kitchen';
+const EXIT_NAME = 'Exit';
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('connected mongoose')
+db.once('open', function () {
+    console.log('connected mongoose')
 });
 
-async function poll_updates_from_prism(){
-    await sql.connect('mssql://PortalLogReader:7BDq5O6mv2@10.0.0.129/PassFace_Repl')
-    const result = await sql.query`select * from mytable where id = ${value}`
-    console.dir(result)
+async function poll_updates_from_prism() {
+    await sql.connect('mssql://PortalLogReader:7BDq5O6mv2@10.0.0.129/PassFace_Repl');
+    const result = await sql.query`
+    select top (50) [Num],[LTime],U.DBName,U.Surname
+    from [PassFace_Repl].[dbo].[UsesJournal] 
+    inner join Keys K on K.ID = KID
+    inner join Users U on U.ID = K.UserID
+    where Num = 11 or Num = 30
+    order by LTime desc`;
+    console.log(result)
+
+    for (let personLocation of result) {
+        const person = personLocations.filter(p => p.last_name === personLocation.Surname && p.first_name === personLocation.DBName);
+
+        if (person.length === 0 && result.Num === ENTER_REGULATOR) {
+            const roomPerson = persons.filter(p => p.last_name === personLocation.Surname && p.first_name === personLocation.DBName)[0];
+            if (roomPerson) {
+                const locationRoom = roomNumber > 400 && roomNumber < 499 ? roomPerson.home : KITCHEN_NAME;
+
+                personLocations.push({ room: locationRoom, first_name: personLocation.DBName, last_name: personLocation.Surname, date_time: new Date(personLocation.LTime) })
+
+                updatePersonLocation(roomPerson.id, locationRoom);
+                continue;
+            }
+        }
+
+        if (person.length !== 0 && result.Num === EXIT_REGULATOR) {
+            const index = personLocations.indexOf(person);
+
+            if (index > -1) {
+                personLocations.splice(index, 1);
+                updatePersonLocation(person.id, EXIT_NAME);
+                continue;
+            }
+        }
+
+        if (person.length !== 0 && result.Num === ENTER_REGULATOR) {
+            const index = personLocations.indexOf(person);
+
+            personLocations[index].date_time = new Date(personLocation.LTime);
+            updatePersonLocation(personLocations[index].id, personLocations[index].Dislocation);
+            continue;
+        }
+    }
 }
 
 setInterval(() => {
@@ -56,39 +99,49 @@ const RoomModel = mongoose.model('Room', RoomSchema);
 var persons = []
 var room_names = new Set()
 
+var personLocations = [];
+
 // Фичи сервера:
 // 1. При старте сервера мы должны найти всех кто на этаже и посадить их по своим комнатам
 // 2. Когда нам приходит инфа с камеры, мы должны найти наиболее подходящего чувака и послать его куда направляет камера
 // 3. Когда человек уходит с этажа мы отправляем его на выход
 
-async function persist_rooms_users_list(){
+async function persist_rooms_users_list() {
     try {
         console.log('persisting rooms state');
         const resp = await fetch(PRISM_URL);
         const employee_list = await resp.json();
         // console.log(json)
         for (const employee of employee_list) {
-            let {Id, Dislocation, InBuilding, Login, FirstName, LastName} = employee;
-            if (InBuilding) {
-                const locationResp = await fetch(PRISM_CURENT_LOCATION_URL);
-                const employee_location = await locationResp.json();
+            let { Id, Dislocation, InBuilding, Login, FirstName, LastName } = employee;
 
-                if (Id === 492 || Id === 530) {
-                    Dislocation = hakvelonRoomName;
-                }
+            const locationResp = await fetch(PRISM_CURENT_LOCATION_URL);
+            const employee_location = await locationResp.json();
 
-                const locationMatch = employee_location['Info'].match(/On.*(2|3|4|5).*/);
-
-                if (locationMatch && locationMatch[1] === '4') {
-                    const roomNumber = parseInt(Dislocation);
-                    updatePersonLocation(Id, roomNumber > 400 && roomNumber < 499 ? Dislocation : 'Kitchen');
-                }
-
-                persons.push({id: Id, home: Dislocation, inBuilding: InBuilding, login: Login, last_location: Dislocation, first_name: FirstName, last_name: LastName})
+            if (Id === 492 || Id === 530) {
+                Dislocation = hakvelonRoomName;
             }
-            room_names.add(Dislocation)
+
+            const locationMatch = employee_location['Info'].match(/On.*(2|3|4|5).*/);
+
+            if (locationMatch && locationMatch[1] === '4') {
+                const roomNumber = parseInt(Dislocation);
+                const locationRoom = roomNumber > 400 && roomNumber < 499 ? Dislocation : KITCHEN_NAME;
+
+                updatePersonLocation(Id, locationRoom);
+
+                personLocations.push({ id: Id, room: locationRoom, first_name: FirstName, last_name: LastName, date_time: new Date(), home: Dislocation });
+            }
+
+            persons.push({ id: Id, home: Dislocation, inBuilding: InBuilding, login: Login, last_location: Dislocation, first_name: FirstName, last_name: LastName })
+
+
+            room_names.add(Dislocation);
         }
-    } catch (error){
+
+        room_names.add(KITCHEN_NAME);
+        room_names.add(EXIT_NAME);
+    } catch (error) {
         console.error(error);
     }
 }
