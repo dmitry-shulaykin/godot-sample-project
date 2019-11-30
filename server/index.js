@@ -70,7 +70,7 @@ setInterval(() => {
 }, 60 * 1000)
 
 const PRISM_URL = "http://prism/api/employees/all"
-const PRISM_CURENT_LOCATION_URL="http://prism/api/employees/currentlocation/?id="
+const PRISM_CURENT_LOCATION_URL = "http://prism/api/employees/currentlocation/?id="
 
 const hakvelonRoomName = "407 - Hakvelon";
 
@@ -155,12 +155,12 @@ const wss = new WebSocket.Server({ port: 8081 });
 wss.on('connection', async ws => {
     console.log('connected')
     ws.on('message', (message) => {
-      let recieve = new gdCom.GdBuffer(Buffer.from(message))
-      console.log(recieve.getVar())
+        let recieve = new gdCom.GdBuffer(Buffer.from(message))
+        console.log(recieve.getVar())
     })
 
-    for (const person of persons){
-        ws.send({event_type: 'load_person', person})
+    for (const person of persons) {
+        ws.send({ event_type: 'load_person', person })
         await delay(500);
     }
 })
@@ -180,10 +180,10 @@ app.get('/room_names', async (req, res) => {
 
 app.post('/rooms', async (req, res) => {
     try {
-        const {id, name, position} = req.body;
-        console.log({id, name, position});
-        const new_room = RoomModel.create( {id, name, position});
-        res.json({ok: true, new_room});
+        const { id, name, position } = req.body;
+        console.log({ id, name, position });
+        const new_room = RoomModel.create({ id, name, position });
+        res.json({ ok: true, new_room });
     } catch (error) {
         res.status(400).json(error);
     }
@@ -193,13 +193,13 @@ app.post('/rooms', async (req, res) => {
 app.post('/cam', function (req, res) {
     console.log(req.body.cam_id)
     console.log(req.body.room_id)
-    res.json({ok: true})
+    res.json({ ok: true })
 })
 
 app.post('/person/:id/home', function (req, res) {
     console.log(req.params.id);
     print(req.body.position)
-    res.json({ok: true})
+    res.json({ ok: true })
 })
 
 app.post('/person/:id/location', function (req, res) {
@@ -207,7 +207,7 @@ app.post('/person/:id/location', function (req, res) {
         console.log(req.params.id);
         print(req.body.position)
         updatePersonLocation()
-        res.json({ok: true})
+        res.json({ ok: true })
     } catch (error) {
         console.log(error)
     }
@@ -220,7 +220,7 @@ async function updatePersonLocation(personId, location) {
     persons.last_location = location;
     wss.clients.forEach(ws => {
         let buffer = new gdCom.GdBuffer()
-        buffer.putString(JSON.stringify({event: 'change_loc', person_id: personId, location}))
+        buffer.putString(JSON.stringify({ event: 'change_loc', person_id: personId, location }))
         buffer.putVar(Math.random())
         ws.send(buffer.getBuffer())
         client.send()
@@ -233,5 +233,5 @@ async function updatePersonLocation(personId, location) {
 persist_rooms_users_list();
 
 app.get('/ping', function (req, res) {
-    res.json({pong: 'pong'})
+    res.json({ pong: 'pong' })
 })
