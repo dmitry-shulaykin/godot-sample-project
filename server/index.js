@@ -78,6 +78,7 @@ var persons = []
 var room_names = new Set()
 
 var personLocations = [];
+var cams = [];
 
 // Фичи сервера:
 // 1. При старте сервера мы должны найти всех кто на этаже и посадить их по своим комнатам
@@ -153,6 +154,10 @@ wss.on('connection', async ws => {
 
 app.get('/persons', async (req, res) => {
     res.json(persons)
+})
+
+app.get('/personLocations', async (req, res) => {
+    res.json(personLocations)
 })
 
 app.get('/room_names', async (req, res) => {
