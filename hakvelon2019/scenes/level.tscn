@@ -277,3 +277,21 @@ transform = Transform( 0.504969, 0, -0.863138, 0, 0.999999, 0, 0.863138, 0, 0.50
 
 [node name="Monitor7" parent="Rooms/403/Monitors" instance=ExtResource( 4 )]
 transform = Transform( 0.700104, 0, -0.714041, 0, 0.999999, 0, 0.714041, 0, 0.700104, 45.7227, 9.53674e-007, 13.5462 )
+
+[node name="Keyboards" type="Spatial" parent="Rooms/403"]
+editor/display_folded = true
+transform = Transform( 0.00228311, 0, -0.399994, 0, 0.4, 0, 0.399994, 0, 0.00228311, 4.36111, 1.79947, -10.4285 )
+
+[node name="Keyboard" parent="Rooms/403/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( 0.720325, 0, -0.693637, 0, 1, 0, 0.693637, 0, 0.720325, -8.58966, 0, -0.509051 )
+
+[node name="Keyboard2" parent="Rooms/403/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( 0.994877, 0, 0.101096, 0, 1, 0, -0.101096, 0, 0.994877, -19.332, -4.76837e-007, -0.259237 )
+
+[node name="Keyboard3" parent="Rooms/403/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( 0.187501, 0, -0.982264, 0, 1, 0, 0.982264, 0, 0.187501, -17.4845, -4.76837e-007, -7.86844 )
+
+[node name="Keyboard4" parent="Rooms/403/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( 0.135078, 0, -0.990835, 0, 1, 0, 0.990835, 0, 0.135078, -17.861, 0, -17.2142 )
+
+[node name="Keyboard5" parent="Rooms/403/Keyboards" instance=ExtResource( 5 )]
