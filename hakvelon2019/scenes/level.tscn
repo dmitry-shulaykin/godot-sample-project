@@ -543,3 +543,15 @@ transform = Transform( 0.0619889, 0, -0.395168, 0, 0.4, 0, 0.395168, 0, 0.061988
 transform = Transform( -0.304099, 0, -0.259854, 0, 0.4, 0, 0.259854, 0, -0.304099, -1.85095, 0, -6.14044 )
 
 [node name="Keyboard7" parent="Rooms/406/Keyboards" instance=ExtResource( 5 )]
+
+[node name="Computers" type="Spatial" parent="Rooms/406"]
+editor/display_folded = true
+transform = Transform( -0.944614, 0, -0.328183, 0, 1, 0, 0.328183, 0, -0.944614, 16.6959, 1.42193, 16.6431 )
+
+[node name="Computer" parent="Rooms/406/Computers" instance=ExtResource( 6 )]
+
+[node name="Computer2" parent="Rooms/406/Computers" instance=ExtResource( 6 )]
+transform = Transform( 0.139847, 0, -0.990173, 0, 1, 0, 0.990173, 0, 0.139847, -0.624899, 1.19209e-007, 0.306578 )
+
+[node name="Computer3" parent="Rooms/406/Computers" instance=ExtResource( 6 )]
+transform = Transform( 0.990442, 0, 0.137928, 0, 1, 0, -0.137928, 0, 0.990442, -0.267792, 0.611442, 0.0599041 )
