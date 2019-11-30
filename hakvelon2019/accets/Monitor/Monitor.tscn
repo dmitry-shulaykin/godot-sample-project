@@ -4,9 +4,15 @@
 [ext_resource path="res://accets/Monitor/Material_002.material" type="Material" id=2]
 
 [node name="Monitor" instance=ExtResource( 1 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
 
 [node name="Monitor" parent="." index="0"]
+transform = Transform( 1.70834, 6.51683e-007, -2.8486e-014, 0, -4.37114e-008, -1, -1.1133e-006, 1, -4.37114e-008, -0.0150506, 0.851358, 0 )
 material/0 = ExtResource( 2 )
 
 [node name="Cube" parent="Monitor" index="0"]
+transform = Transform( -0.0992596, -4.07738e-008, 2.34959e-016, 0, -2.03869e-008, -0.0614854, 8.67755e-009, -0.466398, 2.68761e-009, -0.025429, 0.112313, 0.92457 )
 material/0 = ExtResource( 2 )
+
+[node name="Cube001" parent="Monitor/Cube" index="0"]
+transform = Transform( 2.80305, 6.63169e-016, -1.33684e-021, -2.34162e-014, 0.079385, 0, 5.14897e-022, 1.21818e-037, 7.27765, 0.0280384, -1.09498, 2.25638 )
