@@ -2,5 +2,6 @@ RecognitionConfig = {
     'camera': '',
     'user': '',
     'password': '',
-    'camId': 2
+    'camId': 2,
+    'serverUrl': ''
 }
