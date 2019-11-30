@@ -13,4 +13,7 @@ margin_top = 260.806
 margin_right = 578.759
 margin_bottom = 315.806
 text = "start"
+
+[node name="request_names" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="start" to="." method="_on_Button_pressed"]
+[connection signal="request_completed" from="request_names" to="." method="_on_request_names_request_completed"]

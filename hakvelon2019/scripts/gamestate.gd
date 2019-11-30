@@ -4,7 +4,7 @@ var level = null
 var ws = null
 var room_markers = {}
 var persons_list = {}
-
+var person_names = {}
 
 func join_game():
 	print('joining akvelon map')
@@ -22,7 +22,12 @@ func join_game():
 func _ready():
 	pass
 
-	
+func set_persons_names(names):
+	person_names = {}
+	for keyvalue in names:
+		person_names[keyvalue['id']] = keyvalue['name']
+
+
 func _data_recieved():
 	pass
 
@@ -48,26 +53,41 @@ func _process(delta):
 			buffer.set_data_array(packet)
 			
 			var event = buffer.get_string()
+			print(event)
 			var result = JSON.parse(event).result
 			var type = result['event_type']
 			print('Recieve: ', type)
 			
 			if type == 'load_person':
 				var person = result['person']
-				add_person(person['id'], person['first_name'], person['last_name'], person['room'])
+				add_person(person['id'],  person['room'])
 				print(person)
+			if type == 'change_location':
+				var person_id = result['person_id']
+				var location = result['location']
+				var person = result['person']
+				print(persons_list, person_id)
+				if !persons_list.has(person_id):
+					print('moving: ', person, ' ', person_id)
+					person_move(person['id'], location)
+				else:
+					print('not having: ', person, ' ', person_id)
+					add_person(person['id'], 'Exit')
+					person_move(person['id'], location)
 
-func add_person(id, nname, surname, location):
-	print('adding person', nname, surname, location)
+func add_person(id, location):
+	var nname = person_names[id]
+	print('adding person', id, nname, location)
 	var person = load("res://scenes/person.tscn")
 	var person_instance = person.instance()
+	persons_list[id] = person_instance
 	var room = location
 	var room_node = level.get_node('room_markers/'+room)
 	if room_node == null:
 		print('null room', room)
 	
 	person_instance.set_translation(room_node.get_translation())
-	person_instance.set_names(id, nname, surname)
+	person_instance.set_names(id, nname)
 	## player.set_network_master(id)
 	#if position_node == null:
 		#return
@@ -78,13 +98,13 @@ func add_person(id, nname, surname, location):
 	
 	var target = level.get_node("goto").get_translation();
 	#player.move_to(target)
-	persons_list[id] = person_instance
+	
 	pass
 
 func person_move(id, room):
 	var person = persons_list[id]
 	var room_pos = level.get_node('room_markers/'+room).get_translation()
-	person.move_to(person)
+	person.move_to(room_pos)
 	
 
 func add_room_markers(markers):
