@@ -17,6 +17,8 @@ agent/max_climb = 0.1
 
 [node name="players" type="Spatial" parent="."]
 
+[node name="players2" type="Spatial" parent="."]
+
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.00453216, 0.99999, 0, -0.99999, 0.00453216, 0, 20.4133, 0 )
 light_energy = 0.84
@@ -34,9 +36,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3348, 1.42941, -16.5714 )
 
 [node name="dmitriishulaikin" type="Position3D" parent="desks"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7886, 1.42277, -6.44513 )
-
-[node name="alekseychichagov" type="Position3D" parent="desks"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.108, 1.19216, -15.08 )
 
 [node name="viktoriyastarikova" type="Position3D" parent="desks"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.2838, 1.03066, -13.1854 )
@@ -895,3 +894,10 @@ transform = Transform( 0.169094, 0, -0.9856, 0, 1, 0, 0.9856, 0, 0.169094, 7.154
 
 [node name="Computer2" parent="Rooms/410/Computers" instance=ExtResource( 6 )]
 transform = Transform( 0.0692473, 0, 0.9976, 0, 1, 0, -0.9976, 0, 0.0692473, 1.01135, -1.30879, -0.230307 )
+
+[node name="desks2" type="Spatial" parent="."]
+
+[node name="alekseychichagov" type="Position3D" parent="desks2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.108, 1.19216, -15.08 )
+
+[node name="man" type="Spatial" parent="."]

@@ -8,11 +8,10 @@ var velocity : Vector3 = Vector3()
 var path = []
 var path_ind = 0
 const move_speed = 5
+var sprite_node
 onready var nav = get_parent().get_parent().get_node('floor_nav')
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

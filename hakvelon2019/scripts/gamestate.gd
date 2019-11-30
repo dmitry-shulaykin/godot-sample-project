@@ -91,7 +91,12 @@ func begin_game_client():
 
 func add_person(id, login, location):
 	print('adding person', id, login, location)
-	var person = load("res://scenes/person.tscn")
+	var person
+	if player_index % 2 == 0:
+		person = load("res://scenes/person2.tscn")
+	else:
+		person = load("res://scenes/person.tscn")
+
 	var player = person.instance()
 	player.set_translation(Vector3(0, 5, 0))
 	## player.set_network_master(id)
