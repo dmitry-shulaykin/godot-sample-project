@@ -140,14 +140,14 @@ wss.on('connection', async ws => {
         let recieve = new gdCom.GdBuffer(Buffer.from(message))
         console.log(recieve.getVar())
     })
-
-    for (const person of persons){
+    console.log('$$', personLocations.length)
+    for (const person of personLocations){
         console.log('sending ', person)
         // ws.send(JSON.stringify({event_type: 'load_person', person}))
         let buffer = new gdCom.GdBuffer()
         buffer.putString(JSON.stringify({event_type: 'load_person', person}))
         ws.send(buffer.getBuffer())
-        await delay(5000);
+        await delay(100);
     }
 })
 
@@ -189,10 +189,9 @@ async function updatePersonLocation(personId, location) {
     persons.last_location = location;
     wss.clients.forEach(ws => {
         let buffer = new gdCom.GdBuffer()
-        buffer.putString(JSON.stringify({ event: 'change_loc', person_id: personId, location }))
+        buffer.putString(JSON.stringify({ event_type: 'change_location', person_id: personId, location }))
         buffer.putVar(Math.random())
         ws.send(buffer.getBuffer())
-        client.send()
     })
 }
 
