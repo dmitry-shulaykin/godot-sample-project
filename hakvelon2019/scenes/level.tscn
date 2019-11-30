@@ -141,6 +141,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5005, 1.36119, 4.35908 )
 [node name="Rooms" type="Spatial" parent="."]
 
 [node name="412" type="Spatial" parent="Rooms"]
+editor/display_folded = true
 
 [node name="Chairs" type="Spatial" parent="Rooms/412"]
 editor/display_folded = true
@@ -276,6 +277,7 @@ transform = Transform( 0.990933, 0, 0.134355, 0, 1, 0, -0.134355, 0, 0.990933, 1
 transform = Transform( 0.234878, 0, 0.972025, 0, 1, 0, -0.972025, 0, 0.234878, 0.957977, 0.291023, 2.1787 )
 
 [node name="Monitors" type="Spatial" parent="Rooms/403"]
+editor/display_folded = true
 transform = Transform( 0.0984548, 0, 0.174088, 0, 0.2, 0, -0.174088, 0, 0.0984548, 4.40201, 1.92467, -10.6052 )
 
 [node name="Monitor" parent="Rooms/403/Monitors" instance=ExtResource( 4 )]
@@ -316,6 +318,7 @@ transform = Transform( 0.187501, 0, -0.982264, 0, 1, 0, 0.982264, 0, 0.187501, -
 transform = Transform( 0.135078, 0, -0.990835, 0, 1, 0, 0.990835, 0, 0.135078, -17.861, 0, -17.2142 )
 
 [node name="Keyboard5" parent="Rooms/403/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Computers" type="Spatial" parent="Rooms/403"]
 editor/display_folded = true
@@ -333,13 +336,14 @@ transform = Transform( 1, 0, 1.86265e-009, 0, 1, 0, -3.72529e-009, 0, 1, 0.08025
 transform = Transform( 0.0786456, 0, -0.996904, 0, 1, 0, 0.996904, 0, 0.0786456, -2.25976, -0.799103, 0.197456 )
 
 [node name="407" type="Spatial" parent="Rooms"]
+editor/display_folded = true
 
 [node name="Chairs" type="Spatial" parent="Rooms/407"]
 editor/display_folded = true
 transform = Transform( 0.609045, 0, -0.793136, 0, 1, 0, 0.793136, 0, 0.609045, 6.32508, 0.994115, 14.0143 )
 
 [node name="Chair" parent="Rooms/407/Chairs" instance=ExtResource( 3 )]
-transform = Transform( 0.607858, 0, -0.794046, 0, 1, 0, 0.794046, 0, 0.607858, 2.39958, 0.362548, -0.43037 )
+transform = Transform( 0.927397, 0, -0.374079, 0, 1, 0, 0.374079, 0, 0.927397, 2.66214, 0.362548, -0.263636 )
 
 [node name="Chair2" parent="Rooms/407/Chairs" instance=ExtResource( 3 )]
 transform = Transform( -0.790934, 0, 0.611901, 0, 1, 0, -0.611901, 0, -0.790934, 1.65802, 0.291023, 1.48959 )
@@ -389,3 +393,13 @@ transform = Transform( -0.18885, 0, -0.0658464, 0, 0.2, 0, 0.0658464, 0, -0.1888
 
 [node name="Monitor4" parent="Rooms/407/Monitors" instance=ExtResource( 4 )]
 transform = Transform( 0.188513, 0, -0.0668059, 0, 0.2, 0, 0.0668059, 0, 0.188513, -0.153387, 2.38419e-007, 0.103816 )
+
+[node name="Keyboards" type="Spatial" parent="Rooms/407"]
+editor/display_folded = true
+transform = Transform( -0.999657, 0, 0.0261791, 0, 1, 0, -0.0261791, 0, -0.999657, 7.31875, 1.83046, 18.5295 )
+
+[node name="Keyboard" parent="Rooms/407/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( 0.0508672, 0, -0.396753, 0, 0.4, 0, 0.396753, 0, 0.0508672, 2.04932, 0, 2.23933 )
+
+[node name="Keyboard2" parent="Rooms/407/Keyboards" instance=ExtResource( 5 )]
+transform = Transform( 0.4, 0, 9.31323e-010, 0, 0.4, 0, -9.31323e-010, 0, 0.4, 0.0738244, 0, -0.0449505 )
