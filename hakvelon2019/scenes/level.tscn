@@ -141,7 +141,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5005, 1.36119, 4.35908 )
 [node name="Rooms" type="Spatial" parent="."]
 
 [node name="412" type="Spatial" parent="Rooms"]
-editor/display_folded = true
 
 [node name="Chairs" type="Spatial" parent="Rooms/412"]
 editor/display_folded = true
@@ -277,7 +276,6 @@ transform = Transform( 0.990933, 0, 0.134355, 0, 1, 0, -0.134355, 0, 0.990933, 1
 transform = Transform( 0.234878, 0, 0.972025, 0, 1, 0, -0.972025, 0, 0.234878, 0.957977, 0.291023, 2.1787 )
 
 [node name="Monitors" type="Spatial" parent="Rooms/403"]
-editor/display_folded = true
 transform = Transform( 0.0984548, 0, 0.174088, 0, 0.2, 0, -0.174088, 0, 0.0984548, 4.40201, 1.92467, -10.6052 )
 
 [node name="Monitor" parent="Rooms/403/Monitors" instance=ExtResource( 4 )]
@@ -335,7 +333,6 @@ transform = Transform( 1, 0, 1.86265e-009, 0, 1, 0, -3.72529e-009, 0, 1, 0.08025
 transform = Transform( 0.0786456, 0, -0.996904, 0, 1, 0, 0.996904, 0, 0.0786456, -2.25976, -0.799103, 0.197456 )
 
 [node name="407" type="Spatial" parent="Rooms"]
-editor/display_folded = true
 
 [node name="Chairs" type="Spatial" parent="Rooms/407"]
 editor/display_folded = true
@@ -376,3 +373,19 @@ transform = Transform( -0.756509, 0, -0.653983, 0, 1, 0, 0.653983, 0, -0.756509,
 
 [node name="Chair12" parent="Rooms/407/Chairs" instance=ExtResource( 3 )]
 transform = Transform( -0.735575, 0, 0.677444, 0, 1, 0, -0.677444, 0, -0.735575, 0.901863, 0.291023, -2.62171 )
+
+[node name="Monitors" type="Spatial" parent="Rooms/407"]
+editor/display_folded = true
+transform = Transform( 0.316587, 0, 0.948564, 0, 1, 0, -0.948564, 0, 0.316587, 9.26505, 1.9473, 16.869 )
+
+[node name="Monitor" parent="Rooms/407/Monitors" instance=ExtResource( 4 )]
+transform = Transform( 0.0359314, 0, -0.196746, 0, 0.2, 0, 0.196746, 0, 0.0359314, -2.70298, 0, -1.57876 )
+
+[node name="Monitor2" parent="Rooms/407/Monitors" instance=ExtResource( 4 )]
+transform = Transform( 0.0776333, 0, -0.184318, 0, 0.2, 0, 0.184318, 0, 0.0776333, -2.48663, 2.38419e-007, -0.862103 )
+
+[node name="Monitor3" parent="Rooms/407/Monitors" instance=ExtResource( 4 )]
+transform = Transform( -0.18885, 0, -0.0658464, 0, 0.2, 0, 0.0658464, 0, -0.18885, -1.17004, 0, -4.28988 )
+
+[node name="Monitor4" parent="Rooms/407/Monitors" instance=ExtResource( 4 )]
+transform = Transform( 0.188513, 0, -0.0668059, 0, 0.2, 0, 0.0668059, 0, 0.188513, -0.153387, 2.38419e-007, 0.103816 )
