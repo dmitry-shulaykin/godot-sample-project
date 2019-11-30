@@ -21,13 +21,13 @@ db.once('open', function () {
 
 async function poll_updates_from_prism() {
     await sql.connect('mssql://PortalLogReader:7BDq5O6mv2@10.0.0.129/PassFace_Repl');
-    const result = await sql.query`
+    const result = (await sql.query`
     select top (50) [Num],[LTime],U.DBName,U.Surname
     from [PassFace_Repl].[dbo].[UsesJournal] 
     inner join Keys K on K.ID = KID
     inner join Users U on U.ID = K.UserID
     where Num = 11 or Num = 30
-    order by LTime desc`;
+    order by LTime desc`).recordset;
     console.log(result)
 
     for (let personLocation of result) {
@@ -45,7 +45,7 @@ async function poll_updates_from_prism() {
             }
         }
 
-        if (person.length !== 0 && result.Num === EXIT_REGULATOR) {
+        if (person && result.Num === EXIT_REGULATOR) {
             const index = personLocations.indexOf(person);
 
             if (index > -1) {
@@ -55,7 +55,7 @@ async function poll_updates_from_prism() {
             }
         }
 
-        if (person.length !== 0 && result.Num === ENTER_REGULATOR) {
+        if (person && result.Num === ENTER_REGULATOR) {
             const index = personLocations.indexOf(person);
 
             personLocations[index].date_time = new Date(personLocation.LTime);
