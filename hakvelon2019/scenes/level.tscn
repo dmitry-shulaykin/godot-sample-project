@@ -903,30 +903,39 @@ transform = Transform( 0.0692473, 0, 0.9976, 0, 1, 0, -0.9976, 0, 0.0692473, 1.0
 
 [node name="402 - CD2" parent="room_markers" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8948, 2.18994, -14.4055 )
+visible = false
 
 [node name="407 - Hakvelon" parent="room_markers" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.36117, 2.16759, 13.8912 )
+visible = false
 
 [node name="410 - CGI" parent="room_markers" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1998, 1.8701, 3.30409 )
+visible = false
 
 [node name="412 - Data Movement" parent="room_markers" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2257, 2.37685, -13.2042 )
+visible = false
 
 [node name="406 - Terms" parent="room_markers" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4402, 2.38909, 14.2648 )
+visible = false
 
 [node name="401 - Admins" parent="room_markers" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25943, 2.42273, -13.5586 )
+visible = false
 
 [node name="Exit" parent="room_markers" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0433, 2.10707, -16.654 )
+visible = false
 
 [node name="Kitchen" parent="room_markers" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0914, 3.69818, -0.0901108 )
+visible = false
 
 [node name="403 - Analytics" parent="room_markers" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.53245, 1.70484, -13.2677 )
+visible = false
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
