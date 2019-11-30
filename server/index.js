@@ -31,22 +31,9 @@ const PRISM_URL = "http://prism/api/employees/all"
 const PositionSchema = new mongoose.Schema({ x: Number, y: Number, z: Number });
 
 const RoomSchema = new mongoose.Schema({
-    id: Number,
     name: String,
-    position_home: PositionSchema,
-    position_door: PositionSchema,
+    position: PositionSchema,
 });
-
-const PersonSchema = new mongoose.Schema({
-    prism_id: Number,
-    passface_id: Number,
-    login: String,
-    name: String,
-    surname: String,
-    home: String,
-    last_location: String,
-    last_changed_location: Date,
-})
 
 const RoomModel = mongoose.model('Room', RoomSchema);
 
@@ -92,8 +79,12 @@ wss.on('connection', async ws => {
     })
 
     for (const person of persons){
-        ws.send({event_type: 'load_person', person})
-        await delay(500);
+        console.log('sending ', person)
+        // ws.send(JSON.stringify({event_type: 'load_person', person}))
+        let buffer = new gdCom.GdBuffer()
+        buffer.putString(JSON.stringify({event_type: 'load_person', person}))
+        ws.send(buffer.getBuffer())
+        await delay(5000);
     }
 })
 
@@ -107,14 +98,14 @@ app.get('/rooms', async (req, res) => {
 })
 
 app.get('/room_names', async (req, res) => {
-    res.json(Array.from(room_names))
+    res.json(['kitchen', 'exit', ...Array.from(room_names)])
 })
 
 app.post('/rooms', async (req, res) => {
     try {
-        const {id, name, position} = req.body;
-        console.log({id, name, position});
-        const new_room = RoomModel.create( {id, name, position});
+        const {name, position} = req.body;
+        console.log({name, position});
+        const new_room = RoomModel.create({name, position});
         res.json({ok: true, new_room});
     } catch (error) {
         res.status(400).json(error);
@@ -158,9 +149,6 @@ async function updatePersonLocation(personId, location) {
         client.send()
     })
 }
-
-
-
 
 persist_rooms_users_list();
 
