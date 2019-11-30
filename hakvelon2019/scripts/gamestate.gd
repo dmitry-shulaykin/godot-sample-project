@@ -3,11 +3,10 @@ extends Node
 var level = null
 var ws = null
 var room_markers = {}
+var persons_list = {}
+
 
 func join_game():
-	pass
-
-func _ready():
 	print('joining akvelon map')
 	ws = WebSocketClient.new()
 	ws.connect("connection_established", self, "_connection_established")
@@ -18,6 +17,11 @@ func _ready():
 	var url = "ws://localhost:8081"
 	print("Connecting to " + url)
 	ws.connect_to_url(url)
+	pass
+
+func _ready():
+	pass
+
 	
 func _data_recieved():
 	pass
@@ -32,6 +36,8 @@ func _connection_error():
 	print("Connection error")
     
 func _process(delta):
+	if !ws:
+		return
 	if ws.get_connection_status() == ws.CONNECTION_CONNECTING || ws.get_connection_status() == ws.CONNECTION_CONNECTED:
 		ws.poll()
 	if ws.get_peer(1).is_connected_to_host():
@@ -47,28 +53,39 @@ func _process(delta):
 			print('Recieve: ', type)
 			
 			if type == 'load_person':
-				var person = event['person']
+				var person = result['person']
+				add_person(person['id'], person['first_name'], person['last_name'], person['room'])
 				print(person)
 
-func add_person(id, login, location):
-	print('adding person', id, login, location)
+func add_person(id, nname, surname, location):
+	print('adding person', nname, surname, location)
 	var person = load("res://scenes/person.tscn")
-	var player = person.instance()
-	player.set_translation(Vector3(0, 5, 0))
-	## player.set_network_master(id)
-	var name_parts = login.split('.')
-	var position_node = level.get_node('desks/' + name_parts[0] + name_parts[1])
-	if position_node == null:
-		return
+	var person_instance = person.instance()
+	var room = location
+	var room_node = level.get_node('room_markers/'+room)
+	if room_node == null:
+		print('null room', room)
 	
-	level.get_node("players").add_child(player)
-	print(level.get_node("players"))
-	player.set_translation(position_node.get_translation())
+	person_instance.set_translation(room_node.get_translation())
+	person_instance.set_names(id, nname, surname)
+	## player.set_network_master(id)
+	#if position_node == null:
+		#return
+	
+	level.get_node("persons").add_child(person_instance)
+	#print(level.get_node("persons"))
+	# player.set_translation(position_node.get_translation())
 	
 	var target = level.get_node("goto").get_translation();
-	player.move_to(target)
-	
+	#player.move_to(target)
+	persons_list[id] = person_instance
 	pass
+
+func person_move(id, room):
+	var person = persons_list[id]
+	var room_pos = level.get_node('room_markers/'+room).get_translation()
+	person.move_to(person)
+	
 
 func add_room_markers(markers):
 	for marker in room_markers.values():
@@ -94,9 +111,6 @@ func show_location_markers():
 func create_map():
 	# Change scene
 	var levelmodel = load("res://scenes/level.tscn")
-	print(levelmodel)
-	if levelmodel == null:
-		return
 	level = levelmodel.instance()
 	get_tree().get_root().add_child(level)
 	#get_tree().get_root().get_node("lobby").hide()

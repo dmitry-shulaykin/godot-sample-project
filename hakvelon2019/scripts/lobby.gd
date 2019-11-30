@@ -7,12 +7,13 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	gamestate.create_map();
-	gamestate.join_game();
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 
-
-
+func _on_Button_pressed():
+	gamestate.create_map();
+	gamestate.join_game();
+	get_node("start").hide();
+	pass # Replace with function body.

@@ -6,40 +6,41 @@ script/source = "extends Spatial
 # Declare member variables here. Examples:
 # var a = 2
 # var b = \"text\"
-const ray_length = 1000
-var selected = true
-var room_name = \"room ?\"
+#const ray_length = 1000
+#var selected = true
+#var room_name = \"room ?\"
 
-onready var camera = get_tree().get_root().get_camera()
+#onready var camera = get_tree().get_root().get_camera()
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	_update_label()
+#func _ready():
+	#_update_label()
 
-func _input(event):
-	pass
+#func _input(event):
+	#pass
 
-func set_trans(vec):
-	_update_label()
-	self.set_translation(vec)
+#func set_trans(vec):
+	#_update_label()
+#	self.set_translation(vec)
 	
-func set_name(name):
-	room_name = name
+#func set_name(name):
+	#room_name = name
 
-func _update_label():
-	var pos = get_translation()
-	var cam = get_tree().get_root().get_camera()
-	var screenpos = cam.unproject_position(pos)
-	get_node(\"room_name\").set_position(Vector2(screenpos.x , screenpos.y ) )
-	get_node(\"room_name\").text = room_name
+#func _update_label():#
+	#pass
+	#var pos = get_translation()
+	#var cam = get_tree().get_root().get_camera()
+	#var screenpos = cam.unproject_position(pos)
+	#get_node(\"room_name\").set_position(Vector2(screenpos.x , screenpos.y ) )
+	#get_node(\"room_name\").text = room_name
 
-func select():
-	selected = true
-	var mesh = get_node(\"MeshInstance\")
-	var material = mesh.get_surface_material(0)
-	material.albedo_color = Color(1, 0, 0)
-	mesh.set_surface_material(0, material)
-	
+#func select():
+	#selected = true
+	#var mesh = get_node(\"MeshInstance\")
+	#var material = mesh.get_surface_material(0)
+	#material.albedo_color = Color(1, 0, 0)
+#	mesh.set_surface_material(0, material)
+#	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
