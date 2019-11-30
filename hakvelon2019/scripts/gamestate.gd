@@ -53,22 +53,22 @@ func _process(delta):
 			buffer.set_data_array(packet)
 			
 			var event = buffer.get_string()
-			print(event)
+			#print(event)
 			var result = JSON.parse(event).result
 			var type = result['event_type']
-			print('Recieve: ', type)
+			#print('Recieve: ', type)
 			
 			if type == 'load_person':
 				var person = result['person']
 				add_person(person['id'],  person['room'])
-				print(person)
+				#print(person)
 			if type == 'change_location':
 				var person_id = result['person_id']
 				var location = result['location']
 				var person = result['person']
-				print(persons_list, person_id)
+				#print(persons_list, person_id)
 				if !persons_list.has(person_id):
-					print('moving: ', person, ' ', person_id)
+					# print('moving: ', person, ' ', person_id)
 					person_move(person['id'], location)
 				else:
 					print('not having: ', person, ' ', person_id)
