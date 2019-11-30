@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Spatial
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+const ray_length = 1000
+var selected = true
+var room_name = \"room ?\"
+
+onready var camera = get_tree().get_root().get_camera()
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	_update_label()
+
+func _input(event):
+	pass
+
+func set_trans(vec):
+	_update_label()
+	self.set_translation(vec)
+	
+func set_name(name):
+	room_name = name
+
+func _update_label():
+	var pos = get_translation()
+	var cam = get_tree().get_root().get_camera()
+	var screenpos = cam.unproject_position(pos)
+	get_node(\"room_name\").set_position(Vector2(screenpos.x , screenpos.y ) )
+	get_node(\"room_name\").text = room_name
+
+func select():
+	selected = true
+	var mesh = get_node(\"MeshInstance\")
+	var material = mesh.get_surface_material(0)
+	material.albedo_color = Color(1, 0, 0)
+	mesh.set_surface_material(0, material)
+	
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="SphereMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.976471, 0.0117647, 0.0117647, 1 )
+
+[node name="room_marker" type="Spatial"]
+script = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )

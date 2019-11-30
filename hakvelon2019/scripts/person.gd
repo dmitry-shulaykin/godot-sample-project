@@ -29,7 +29,4 @@ func _physics_process(delta):
 func move_to(target_pos):
     path = nav.get_simple_path(global_transform.origin, target_pos)
     path_ind = 0
-	# var pos = get_translation()
-	# var cam = get_tree().get_root().get_camera()
-	# var screenpos = cam.unproject_position(pos)
-	# get_node("PlayerName").set_position(Vector2(screenpos.x , screenpos.y ) )
+

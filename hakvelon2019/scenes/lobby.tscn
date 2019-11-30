@@ -20,8 +20,6 @@ margin_right = 118.9
 margin_bottom = 83.45
 text = "connect"
 
-[node name="HTTPRequest" type="HTTPRequest" parent="connect_pnl"]
-
 [node name="ppl_pnl" type="Panel" parent="."]
 visible = false
 margin_right = 137.0
@@ -44,7 +42,7 @@ margin_bottom = 134.0
 margin_left = 858.0
 margin_top = 3.0
 margin_right = 1024.0
-margin_bottom = 150.0
+margin_bottom = 221.0
 
 [node name="Label" type="Label" parent="loc_pnl"]
 margin_left = 20.0
@@ -58,6 +56,28 @@ margin_left = 12.0
 margin_top = 30.0
 margin_right = 146.0
 margin_bottom = 134.0
+
+[node name="delete_btn" type="Button" parent="loc_pnl"]
+margin_left = 85.4485
+margin_top = 170.847
+margin_right = 144.448
+margin_bottom = 190.847
+disabled = true
+text = "Delete"
+
+[node name="create_btn" type="Button" parent="loc_pnl"]
+margin_left = 19.3854
+margin_top = 171.884
+margin_right = 72.3854
+margin_bottom = 191.884
+disabled = true
+text = "Create"
+
+[node name="selected" type="Label" parent="loc_pnl"]
+margin_left = 26.0
+margin_top = 143.0
+margin_right = 106.0
+margin_bottom = 157.0
 
 [node name="mtng_pnl" type="Panel" parent="."]
 margin_left = 855.0
@@ -78,5 +98,21 @@ margin_left = 10.0
 margin_top = 35.0
 margin_right = 154.0
 margin_bottom = 158.0
+
+[node name="rooms_request" type="HTTPRequest" parent="."]
+
+[node name="room_names_request" type="HTTPRequest" parent="."]
+
+[node name="create_room" type="HTTPRequest" parent="."]
+
+[node name="update_room_position" type="HTTPRequest" parent="."]
+
+[node name="delete_room" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="connect_pnl/host_btn" to="." method="_on_host_btn_pressed"]
-[connection signal="request_completed" from="connect_pnl/HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="pressed" from="loc_pnl/delete_btn" to="." method="_on_delete_btn_pressed"]
+[connection signal="pressed" from="loc_pnl/create_btn" to="." method="_on_create_btn_pressed"]
+[connection signal="request_completed" from="rooms_request" to="." method="_on_rooms_request_completed"]
+[connection signal="request_completed" from="room_names_request" to="." method="_on_room_names_request_request_completed"]
+[connection signal="request_completed" from="create_room" to="." method="_on_create_room_request_completed"]
+[connection signal="request_completed" from="update_room_position" to="." method="_on_update_room_position_request_completed"]
+[connection signal="request_completed" from="delete_room" to="." method="_on_delete_room_request_completed"]
