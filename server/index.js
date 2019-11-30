@@ -185,11 +185,13 @@ app.post('/person/:id/location', function (req, res) {
 app.listen(3000)
 
 async function updatePersonLocation(personId, location) {
-    const person = persons.find(p => p.id == personId);
-    persons.last_location = location;
+    
     wss.clients.forEach(ws => {
         let buffer = new gdCom.GdBuffer()
-        buffer.putString(JSON.stringify({ event_type: 'change_location', person_id: personId, location }))
+        const person = persons.find(p => p.id == personId);
+        person.last_location = location;
+        console.log('change_location', person, location, personId)
+        buffer.putString(JSON.stringify({ event_type: 'change_location', person_id: personId, location, person }))
         buffer.putVar(Math.random())
         ws.send(buffer.getBuffer())
     })
