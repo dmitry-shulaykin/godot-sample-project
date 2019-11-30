@@ -74,15 +74,6 @@ const PRISM_CURENT_LOCATION_URL = "http://prism/api/employees/currentlocation/?i
 
 const hakvelonRoomName = "407 - Hakvelon";
 
-const PositionSchema = new mongoose.Schema({ x: Number, y: Number, z: Number });
-
-const RoomSchema = new mongoose.Schema({
-    name: String,
-    position: PositionSchema,
-});
-
-const RoomModel = mongoose.model('Room', RoomSchema);
-
 var persons = []
 var room_names = new Set()
 
@@ -102,11 +93,15 @@ async function persist_rooms_users_list() {
         for (const employee of employee_list) {
             let { Id, Dislocation, InBuilding, Login, FirstName, LastName } = employee;
 
-            const locationResp = await fetch(PRISM_CURENT_LOCATION_URL);
+            const locationResp = await fetch(PRISM_CURENT_LOCATION_URL + Id);
             const employee_location = await locationResp.json();
 
             if (Id === 492 || Id === 530) {
                 Dislocation = hakvelonRoomName;
+            }
+
+            if (employee_location == null){
+                continue;
             }
 
             const locationMatch = employee_location['Info'].match(/On.*(2|3|4|5).*/);
@@ -160,26 +155,9 @@ app.get('/persons', async (req, res) => {
     res.json(persons)
 })
 
-app.get('/rooms', async (req, res) => {
-    var rooms = await RoomModel.find({});
-    res.json(rooms)
-})
-
 app.get('/room_names', async (req, res) => {
     res.json(['kitchen', 'exit', ...Array.from(room_names)])
 })
-
-app.post('/rooms', async (req, res) => {
-    try {
-        const {name, position} = req.body;
-        console.log({name, position});
-        const new_room = RoomModel.create({name, position});
-        res.json({ok: true, new_room});
-    } catch (error) {
-        res.status(400).json(error);
-    }
-})
-
 
 app.post('/cam', function (req, res) {
     console.log(req.body.cam_id)
