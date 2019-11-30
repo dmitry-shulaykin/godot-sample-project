@@ -206,8 +206,10 @@ transform = Transform( -0.0165288, 0, 0.499727, 0, 0.5, 0, -0.499727, 0, -0.0165
 [node name="Table7" parent="floor_nav/NavigationMeshInstance/402/Tables" instance=ExtResource( 1 )]
 
 [node name="410" type="Spatial" parent="floor_nav/NavigationMeshInstance"]
+editor/display_folded = true
 
 [node name="Tables" type="Spatial" parent="floor_nav/NavigationMeshInstance/410"]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5811, 0.989655, 2.98456 )
 
 [node name="Table" parent="floor_nav/NavigationMeshInstance/410/Tables" instance=ExtResource( 1 )]
@@ -244,9 +246,10 @@ transform = Transform( -0.0117172, 0, -0.499863, 0, 0.5, 0, 0.499863, 0, -0.0117
 transform = Transform( 0.0163304, 0, 0.499733, 0, 0.5, 0, -0.499733, 0, 0.0163304, 5.11419, -4.76837e-007, 3.70705 )
 
 [node name="goto" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5005, 1.36119, 4.35908 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0333, 1.36119, 18.738 )
 
 [node name="Rooms" type="Spatial" parent="."]
+editor/display_folded = true
 
 [node name="412" type="Spatial" parent="Rooms"]
 editor/display_folded = true
@@ -740,6 +743,7 @@ transform = Transform( -0.999053, 0, -0.0435202, 0, 1, 0, 0.0435202, 0, -0.99905
 transform = Transform( -0.763096, 0, 0.646285, 0, 1, 0, -0.646285, 0, -0.763096, -2.56259, -0.86102, -2.49712 )
 
 [node name="410" type="Spatial" parent="Rooms"]
+editor/display_folded = true
 
 [node name="Chairs" type="Spatial" parent="Rooms/410"]
 editor/display_folded = true
