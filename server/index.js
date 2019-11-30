@@ -77,9 +77,9 @@ async function persist_rooms_users_list(){
                     Dislocation = hakvelonRoomName;
                 }
 
-                const locationMatch = employee_location['Info'].match(/(2|3|4|5)/);
+                const locationMatch = employee_location['Info'].match(/On.*(2|3|4|5).*/);
 
-                if (locationMatch && locationMatch[0] === '4') {
+                if (locationMatch && locationMatch[1] === '4') {
                     const roomNumber = parseInt(Dislocation);
                     updatePersonLocation(Id, roomNumber > 400 && roomNumber < 499 ? Dislocation : 'Kitchen');
                 }
